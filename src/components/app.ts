@@ -4,13 +4,16 @@ import { shoppingListService } from '../services/shopping-list-service';
 import { createRouter, Component } from 'viage';
 
 export class App extends Component {
+
+  title = "Shopping List";
+
   constructor() {
     super('app');
-    document.querySelector('title').textContent = "Shopping List";
+    document.querySelector('title').textContent = this.title;
 
     this.attach('page', true);
     this.setHTML(`
-      <h1 style="text-align: center">Shopping List</h1>
+      <h1 style="text-align: center">${this.title}</h1>
       <div attach="portal"></div>
     `);
     const router = createRouter('main', this.attachments.portal, true);

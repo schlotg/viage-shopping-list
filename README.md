@@ -36,48 +36,48 @@ Your default browser should have opened a new tab with the Viage app running in 
 You should see "Hello From Viage" in browser.
 
 ### Change the Title and the Page Content
-Components draw and interact with the user and Services are singleton responsible for managing data. Components usually live in the src/components directory but you may organize them however you want as long as they are in the src directory. This is also true of Services, they generally live in the src/services directory.
+Components draw and interact with the user and Services are singletons responsible for managing data. Components usually live in the src/components directory but you may organize them however you want as long as they are in the src directory. This is also true of Services, they generally live in the src/services directory.
 
-When code is compiled it is compiled to a single dest/bundle.js file. When using the start command you won't see it as the development server send the changes else where. However, if you compile using the 'npm run build' command you will see the dest folder populated with the bundle.js file.
+When code is compiled it is compiled to a single dest/bundle.js file. When using the start command you won't see it as the development server sends the output elsewhere. However, if you compile using the 'npm run build' command, you will see the dest folder populated with the bundle.js file.
 
-In your favorite editor, I recommend Visual Studio Code, open up the src/components/app.t file inside your projects directory and change:
+In your favorite editor, I recommend Visual Studio Code, open up the src/components/app.t file and inside your projects directory and change:
 
-```document.querySelector('title').textContent = "Hello From Viage ";```
+```title = 'Hello From Viage';```
 
 to
 
-```document.querySelector('title').textContent = "Shopping List";```
-
-Next change the HTML content so that it looks like:
-
-``` <h1 style="text-align: center">Shopping List</h1> ```
+```title = 'Shopping List';```
 
 Save your changes and you should see your app instantly update in the browser. Your code should now look like this:
 
 ```Javascript
-import { createRouter, Component } from 'viage';
+import { Component } from 'viage';
+
+title = "Shopping List";
 
 export class App extends Component {
   constructor() {
     super('app');
-    document.querySelector('title').textContent = "Shopping List";
+    document.querySelector('title').textContent = this.title;
 
     this.attach('page', true);
     this.setHTML(`
-      <h1 style="text-align: center">Shopping List</h1>
+      <h1 style="text-align: center">${this.title}</h1>
     `);
   }
 }
 ```
 
 ### Components
-All components must derive off of the Component base class which is located in Viage/core. TypeScript classes must call the constructor of their base class first thing in the constructor. This is done with the super() call and a component HTML tag name must be passed down to the base class. In this case the component is app and if you inspect the HTML using the browser debug tools you will see a DOM element named <app>. This DOM element represents an instance of our component and will contain any HTML specified in the setHTML() function.
+All components must derive off of the Component base class which is located in Viage/core. TypeScript classes must call the constructor of their base class first thing in the constructor. This is done with the super() call and a component HTML tag name must be passed down to the base class. In this case the component is app and if you inspect the HTML using the browser debug tools you will see a DOM element named 'app'. This DOM element represents an instance of our component and will contain any HTML specified in the *setHTML()* function.
 
-In the next line you can see that we use the standard DOM API querySelector to find the title element of the DOM and set its text content to 'Shopping List'. These are just standard modern DOM APIs.
+In the next line you can see that we use the standard DOM API *querySelector()* to find the title element of the DOM and set its text content to the variable *title*. These are just standard modern DOM APIs.
 
-A component must have some place to render its HTML into. This is where the attach() function comes in. attach() is defined in the Component base class. It attaches this component to a DOM element that matches the CSS selector 'page'.
+A component must have some place to render its HTML into. This is where the *attach()* function comes in. attach() is defined in the Component base class. It attaches this component to a DOM element that matches the CSS selector 'page'.
 
-Lastly, we set the HTML for this component using the setHTML function. It is also defined in the Component base class. Notice that we use the backtick string functionality of ES6. This allows us to output HTML that spans multiple lines and use templating to insert values.
+Lastly, we set the HTML for this component using the *setHTML()* function. It is also defined in the Component base class. Notice that we use the backtick string functionality of ES6. By taking advantage of this modern Javascript feature we can write natural HTML that spans multiple lines and use the built-in templating to insert values.
+
+
 
 
 
