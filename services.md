@@ -1,7 +1,7 @@
 # Viage Shopping List Tutorial
 
 ## Services
-In Viage Services are used to manage data or any other global resource. Components should only contain other components and the glu-logic to display data to the user. In contrast Services should not contain and display logic and handle all aspects of managing the data that is being displayed including notifying components when data has changed. Services are singletons and do need to be instantiated, you cna use them directly by importing them.
+In Viage, Services are used to manage data or any other global resource. Components should only contain other components and the glu-logic to display data to the user. In contrast, Services should not contain any display logic and handle all aspects of managing the data, including notifying components when data has changed. Services are singletons and do need to be instantiated, you can use them directly by importing them.
 
 ### Create a Service
 Using the Viage CLI, create a new service by typing the following in a shell in your project's direrctory:
@@ -48,9 +48,9 @@ class ShoppingListServiceSingleton extends Service {
 Each Shopping list item is going to have a name, description, quantity, and a purchased flag to indicated if purchased or not. The _id field will be used internally by the service to uniquely track each item. We export the interface so it can be used by components interacting with the data.
 
 ### Data Retrieval and Storage
-Normal a service would save and retrieve data from a server. Viage doesn't try to duplicate functionality that is already in the DOM for that. I reccomend using the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch). It is an excellant modern interface that supports promises and is available across the 4 big browsers.
+Normally a service would save and retrieve data from a server. Viage doesn't try to duplicate functionality that is already in the DOM for that. I reccomend using the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch). It is an excellant modern interface that supports promises and is available across the 4 big browsers.
 
-Since writing server code is beyond the scope of this tutorial we sill write to the browser's local storage instead. Add the following code to the shopping-list-service:
+Since writing server code is beyond the scope of this tutorial we will write to the browser's local storage instead. Add the following code to the shopping-list-service:
 
 ```Javascript
 class ShoppingListServiceSingleton extends Service {
@@ -85,12 +85,12 @@ class ShoppingListServiceSingleton extends Service {
   }
 ```
 
-Our service now contains a local list of the data called *list*, a local variable called *count* that the *generateId()* function uses to generate unique ids. There is some code in the contructor and in the save function that stores and retrieves data from local storage.
+Our service now contains a local list of the data in a variable named *list*. There is also a local variable called *count* that the *generateId()* function uses to generate unique ids. The *contructor()* and the *save()* function contains code that stores and retrieves data from local storage.
 
-Notice that everytime the *save()* function is called, we dispatch an event called *update*, that lets everyone that is listening know that the data has changed. The *dispatchEvent()* function is defined in the *Service* base class along with the ability to add and remove event listeners.
+Notice that everytime the *save()* function is called, we dispatch an event called *update*, that lets everyone that is listening know that the data has changed. The *dispatchEvent()* function is defined in the *Service* base class along with the ability to add and remove event listeners. More on that later.
 
 ### Getting and Setting Data
-Next, we will add some getters and setters to make it easy to add, get, and remove data for the components. This is just standard modern Typescript. Add the following lines to our service:
+Next, we will add some getters and setters to make it easy to add, get, and remove data for the components. This is just standard Typescript. Add the following lines to our service:
 
 ```Javascript
   private findIndex(id: string): number {
@@ -129,7 +129,7 @@ Next, we will add some getters and setters to make it easy to add, get, and remo
   }
 ```
 
-The function *findIndex* is just a helper function to find an element by id so that we can remove and get items. There is also a forEach function that makes it easy to iterate across all of the items in our list.
+The function *findIndex* is just a helper function to find an element by id so that we can remove and get items. There is also a *forEach()* function that makes it easy to iterate across all of the items in our list.
 
 Whew! That is the biggest file in our project but it actually does a lot and is great foundation for the rest of the app.
 
