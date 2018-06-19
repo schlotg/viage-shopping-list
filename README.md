@@ -7,7 +7,7 @@ Viage is a minimal web framework that is also fast and easy to use. You can find
 ## Tutorial
 
 ### Installation
-The first thing we need to do is install the Viage CLI. This assumes that you have Node 10.x or newer installed. If not, go to 
+The first thing we need to do is install the Viage CLI. This assumes that you have Node 10.x or newer installed. If not, go to
 [https://nodejs.org/en/download/](https://nodejs.org/en/download/) and install it.
 
 From a command prompt or terminal type:
@@ -43,11 +43,11 @@ When code is compiled it is compiled to a single dest/bundle.js file. When using
 In your favorite editor, I recommend Visual Studio Code, open up the src/components/app.t file inside your projects directory and change:
 
 ```document.querySelector('title').textContent = "Hello From Viage ";```
-    
+
 to
-    
+
 ```document.querySelector('title').textContent = "Shopping List";```
-    
+
 Next change the HTML content so that it looks like:
 
 ``` <h1 style="text-align: center">Shopping List</h1> ```
@@ -72,12 +72,12 @@ export class App extends Component {
 
 ### Components
 All components must derive off of the Component base class which is located in Viage/core. TypeScript classes must call the constructor of their base class first thing in the constructor. This is done with the super() call and a component HTML tag name must be passed down to the base class. In this case the component is app and if you inspect the HTML using the browser debug tools you will see a DOM element named <app>. This DOM element represents an instance of our component and will contain any HTML specified in the setHTML() function.
-  
+
 In the next line you can see that we use the standard DOM API querySelector to find the title element of the DOM and set its text content to Shopping List. These are just standard modern DOM APIs.
 
 A component must have some place to render its HTML to and that is where the attach() function comes in. This is defined in the Component base class and it attaches this component to a DOM element that matches the CSS selector 'page'.
 
-Lastly, we set the HTML for this component using the setHTML function which is also defined in the Component base class. Notice that we use the backtick string functionality of ES6. This allows us to output HTML that spans multiple lines and use templating to instert values.
+Lastly, we set the HTML for this component using the setHTML function which is also defined in the Component base class. Notice that we use the backtick string functionality of ES6. This allows us to output HTML that spans multiple lines and use templating to insert values.
 
 
 
