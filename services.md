@@ -131,7 +131,7 @@ Next, we will add some getters and setters to make it easy to add, get, and remo
 
 The function *findIndex* is just a helper function to find an element by id so that we can remove and get items. There is also a *forEach()* function that makes it easy to iterate across all of the items in our list.
 
-Whew! That is the biggest file in our project but it actually does a lot and is great foundation for the rest of the app.
+Whew! That is the biggest file in our project but it actually does a lot and is great foundation for the rest of the app. All we need to do now is bolt up some components to display the data.
 
 The final file should look like this:
 
