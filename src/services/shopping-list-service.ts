@@ -11,11 +11,20 @@ export interface Item {
 class ShoppingListService extends Service {
 
   private list: Item[] = [];
-  private count = 0;
+  private count = 1;
 
   private generateId() {
     this.count += 1;
     return this.count.toString(16);
+  }
+
+  private findIndex(id: string): number {
+    let i = 0;
+    const list = this.list;
+    for (; i < list.length; ++i) {
+      if (list[i]._id === id) { break; }
+    }
+    return i;
   }
 
   constructor() {
@@ -38,25 +47,13 @@ class ShoppingListService extends Service {
   }
 
   removeItem(id: string) {
-    let i = 0;
-    const list = this.list;
-    for (; i < list.length; ++i) {
-      if (list[i]._id === id) {
-        break;
-      }
-    }
+    const i = this.findIndex(id);
     this.list.splice(i, 1);
     this.save();
   }
 
   getItem(id: string): Item {
-    let i = 0;
-    const list = this.list;
-    for (; i < list.length; ++i) {
-      if (list[i]._id === id) {
-        break;
-      }
-    }
+    const i = this.findIndex(id);
     return this.list[i];
   }
 
