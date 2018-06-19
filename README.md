@@ -1,4 +1,4 @@
-# Viage Shopping List (In Progress)
+# Viage Shopping List Tutorial (In Progress)
 A Viage tutorial that demonstrates how to build a simple shopping list app from the ground up using the Viage framework and CLI. It assumes you are familiar with TypeScript and Modern DOM APIs.
 
 ## What is Viage?
@@ -77,8 +77,14 @@ A component must have some place to render its HTML into. This is where the *att
 
 Lastly, we set the HTML for this component using the *setHTML()* function. It is also defined in the Component base class. Notice that we use the backtick string functionality of ES6. By taking advantage of this modern Javascript feature we can write natural HTML that spans multiple lines and use the built-in templating to insert values.
 
+### Debugging
+Open the Debugger in your favorite modern browser. My recommendation is to use Chrome as it seems to have the best development tools but certainly the other major browsers are not far behind. You should be able to navigate to the app file we just modified. In Chrome you can find it at:
+
+```webpack/./src/components/app.ts```
+
+You can debug it in its native TypeScript form. Place a breakpoint and reload the page. You should see the browser pause on your breakpoint and you should beable to step and inspect your code in TypeScript.
 
 
-
+### [Next (Services)](services.md)
 
 
