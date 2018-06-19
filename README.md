@@ -1,4 +1,4 @@
-# Viage Shopping List
+# Viage Shopping List (In Progress)
 A Viage tutorial that demonstrates how to build a simple shopping list app from the ground up using the Viage framework and CLI. It assumes you are familiar with TypeScript and Modern DOM APIs.
 
 ## What is Viage?
