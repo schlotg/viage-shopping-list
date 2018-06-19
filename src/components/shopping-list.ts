@@ -1,5 +1,5 @@
 import { Component } from 'viage';
-import { shoppingListService } from '../services/shopping-list-service';
+import { ShoppingListService } from '../services/shopping-list-service';
 import { ShoppingListElement } from './shopping-list-element';
 import { ShoppingListAdd } from './shopping-list-add';
 import { getRouter } from 'viage';
@@ -14,15 +14,15 @@ export class ShoppingList extends Component {
       <div attach="list" style="margin-top:20px;width:575px"></div>
     `);
     this.updateList();
-    this.addServiceListener(shoppingListService, 'update', () => this.updateList());
-    this.attachments.clear.addEventListener('click', () => shoppingListService.clear());
+    this.addServiceListener(ShoppingListService, 'update', () => this.updateList());
+    this.attachments.clear.addEventListener('click', () => ShoppingListService.clear());
     this.attachments.add.addEventListener('click', () => getRouter('main').go('#add'));
   }
 
   updateList(){
     this.clearComponents();
     this.attachments.list.innerHTML = '';
-    shoppingListService.forEach(e => {
+    ShoppingListService.forEach(e => {
       this.createComponent(ShoppingListElement).init(e)
         .attach(this.attachments.list);
     });

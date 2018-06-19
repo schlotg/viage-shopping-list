@@ -1,5 +1,5 @@
 import { Component } from 'viage';
-import { Item, shoppingListService } from '../services/shopping-list-service';
+import { Item, ShoppingListService } from '../services/shopping-list-service';
 import { getRouter } from 'viage';
 
 export class ShoppingListElement extends Component {
@@ -23,12 +23,12 @@ export class ShoppingListElement extends Component {
       </div>
     `);
     this.attachments.delete.addEventListener('click', () => {
-      shoppingListService.removeItem(this.item._id);
+      ShoppingListService.removeItem(this.item._id);
     });
     const enabled = this.attachments.enabled;
     enabled.addEventListener('click', () => {
       this.item.enabled = enabled.checked;
-      shoppingListService.save();
+      ShoppingListService.save();
     });
     this.attachments.edit.addEventListener('click', () => {
       getRouter('main').go(`#edit/${this.item._id}`);

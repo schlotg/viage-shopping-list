@@ -1,6 +1,6 @@
 import { ShoppingList } from './shopping-list';
 import { ShoppingListAdd } from './shopping-list-add';
-import { shoppingListService } from '../services/shopping-list-service';
+import { ShoppingListService } from '../services/shopping-list-service';
 import { createRouter, Component } from 'viage';
 
 export class App extends Component {
@@ -26,6 +26,6 @@ export class App extends Component {
 
     router.setDefaultState('#home');
 
-    shoppingListService.addEventListener('update', (data: any) => console.log(data));
+    ShoppingListService.addEventListener('update', (data: any) => console.log(data));
   }
 }

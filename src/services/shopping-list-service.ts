@@ -8,7 +8,7 @@ export interface Item {
   _id?: string; // added by the service
 }
 
-class ShoppingListService extends Service {
+class ShoppingListServiceSingleton extends Service {
 
   private list: Item[] = [];
   private count = 1;
@@ -75,5 +75,5 @@ class ShoppingListService extends Service {
   }
 }
 
-const service = new ShoppingListService();
-export const shoppingListService = service;
+const service = new ShoppingListServiceSingleton();
+export const ShoppingListService = service;

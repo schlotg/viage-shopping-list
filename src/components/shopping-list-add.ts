@@ -1,5 +1,5 @@
 import { Component } from 'viage';
-import { shoppingListService } from '../services/shopping-list-service';
+import { ShoppingListService } from '../services/shopping-list-service';
 import { getRouter } from 'viage';
 
 export class ShoppingListAdd extends Component {
@@ -37,11 +37,11 @@ export class ShoppingListAdd extends Component {
       const item: any = {enabled: false};
       this.fields.forEach(k => item[k] = attachments[k].value);
       if (!(this.params.id)) {
-        shoppingListService.addItem(item);
+        ShoppingListService.addItem(item);
       } else {
-        const data: any = shoppingListService.getItem(this.params.id);
+        const data: any = ShoppingListService.getItem(this.params.id);
         this.fields.forEach(k => data[k] = item[k]);
-        shoppingListService.save();
+        ShoppingListService.save();
       }
       getRouter('main').go('#home');
     });
@@ -50,11 +50,11 @@ export class ShoppingListAdd extends Component {
     attachments.back.addEventListener('click', () => getRouter('main').back());
 
     // handle changes in data
-    this.addServiceListener(shoppingListService, 'update', () => this.updateList());
+    this.addServiceListener(ShoppingListService, 'update', () => this.updateList());
   }
 
   updateList() {
-    const data: any = shoppingListService.getItem(this.params.id);
+    const data: any = ShoppingListService.getItem(this.params.id);
     this.fields.forEach(k => this.attachments[k].value = data && data[k]);
   }
 }
