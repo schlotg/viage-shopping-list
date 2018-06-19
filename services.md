@@ -48,7 +48,7 @@ class ShoppingListServiceSingleton extends Service {
 Each Shopping list item is going to have a name, description, quantity, and a purchased flag to indicated if purchased or not. The _id field will be used internally by the service to uniquely track each item. We export the interface so it can be used by components interacting with the data.
 
 ### Data Retrieval and Storage
-Normally a service would save and retrieve data from a server. Viage doesn't try to duplicate functionality that is already in the DOM for that. I reccomend using the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch). It is an excellant modern interface that supports promises and is available across the 4 big browsers.
+Normally a service would save and retrieve data from a server. Viage doesn't try to duplicate functionality that is already in the DOM. I reccomend using the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch). It is an excellant modern interface that supports promises and is available across the 4 big browsers.
 
 Since writing server code is beyond the scope of this tutorial we will write to the browser's local storage instead. Add the following code to the shopping-list-service:
 
