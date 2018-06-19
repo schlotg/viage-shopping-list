@@ -14,7 +14,7 @@ export class ShoppingListElement extends Component {
     this.item = item;
     this.setHTML(`
       <div style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
-        <input attach="enabled" type="checkbox" ${item.enabled ? "checked": ""} />
+        <input attach="enabled" type="checkbox" ${item.purchased ? "checked": ""} />
         <span style="width: 30px; display: inline-block">${item.quantity}</span>
         <span style="width: 100px; display: inline-block">${item.name}</span>
         <span style="width: 300px; display: inline-block">${item.description}</span>
@@ -27,7 +27,7 @@ export class ShoppingListElement extends Component {
     });
     const enabled = this.attachments.enabled;
     enabled.addEventListener('click', () => {
-      this.item.enabled = enabled.checked;
+      this.item.purchased = enabled.checked;
       ShoppingListService.save();
     });
     this.attachments.edit.addEventListener('click', () => {
