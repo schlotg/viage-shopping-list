@@ -73,11 +73,11 @@ export class App extends Component {
 ### Components
 All components must derive off of the Component base class which is located in Viage/core. TypeScript classes must call the constructor of their base class first thing in the constructor. This is done with the super() call and a component HTML tag name must be passed down to the base class. In this case the component is app and if you inspect the HTML using the browser debug tools you will see a DOM element named <app>. This DOM element represents an instance of our component and will contain any HTML specified in the setHTML() function.
 
-In the next line you can see that we use the standard DOM API querySelector to find the title element of the DOM and set its text content to Shopping List. These are just standard modern DOM APIs.
+In the next line you can see that we use the standard DOM API querySelector to find the title element of the DOM and set its text content to 'Shopping List'. These are just standard modern DOM APIs.
 
-A component must have some place to render its HTML to and that is where the attach() function comes in. This is defined in the Component base class and it attaches this component to a DOM element that matches the CSS selector 'page'.
+A component must have some place to render its HTML into. This is where the attach() function comes in. attach() is defined in the Component base class. It attaches this component to a DOM element that matches the CSS selector 'page'.
 
-Lastly, we set the HTML for this component using the setHTML function which is also defined in the Component base class. Notice that we use the backtick string functionality of ES6. This allows us to output HTML that spans multiple lines and use templating to insert values.
+Lastly, we set the HTML for this component using the setHTML function. It is also defined in the Component base class. Notice that we use the backtick string functionality of ES6. This allows us to output HTML that spans multiple lines and use templating to insert values.
 
 
 
