@@ -18,15 +18,6 @@ class ShoppingListServiceSingleton extends Service {
     return this.count.toString(16);
   }
 
-  private findIndex(id: string): number {
-    let i = 0;
-    const list = this.list;
-    for (; i < list.length; ++i) {
-      if (list[i]._id === id) { break; }
-    }
-    return i;
-  }
-
   constructor() {
     super();
     if (window.localStorage) {
@@ -38,6 +29,23 @@ class ShoppingListServiceSingleton extends Service {
         list.forEach((e: Item) => this.addItem(e));
       }
     }
+  }
+
+  save() {
+    if (window.localStorage) {
+      window.localStorage.setItem('ShoppingList',
+        JSON.stringify({ list: this.list, count: this.count }));
+    }
+    this.dispatchEvent('update', this.list);
+  }
+
+  private findIndex(id: string): number {
+    let i = 0;
+    const list = this.list;
+    for (; i < list.length; ++i) {
+      if (list[i]._id === id) { break; }
+    }
+    return i;
   }
 
   addItem(item: Item) {
@@ -59,14 +67,6 @@ class ShoppingListServiceSingleton extends Service {
 
   forEach(cb: (item: Item, i?: number) => void) {
     this.list.forEach(cb);
-  }
-
-  save() {
-    if (window.localStorage) {
-      window.localStorage.setItem('ShoppingList',
-        JSON.stringify({ list: this.list, count: this.count }));
-    }
-    this.dispatchEvent('update', this.list);
   }
 
   clear() {

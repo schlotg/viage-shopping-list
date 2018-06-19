@@ -1,7 +1,6 @@
 import { Component } from 'viage';
 import { ShoppingListService } from '../services/shopping-list-service';
 import { ShoppingListElement } from './shopping-list-element';
-import { ShoppingListAdd } from './shopping-list-add';
 import { getRouter } from 'viage';
 
 export class ShoppingList extends Component {
