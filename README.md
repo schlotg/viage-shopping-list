@@ -7,7 +7,7 @@ Viage is a minimal web framework that is also fast and easy to use. You can find
 ## Tutorial
 
 ### Installation
-The first thing we need to do is install the Viage CLI. This assumes that you have Node 10.x or newer installed. If not go to 
+The first thing we need to do is install the Viage CLI. This assumes that you have Node 10.x or newer installed. If not, go to 
 [https://nodejs.org/en/download/](https://nodejs.org/en/download/) and install it.
 
 From a command prompt or terminal type:
@@ -44,7 +44,7 @@ In your favorite editor, I recommend Visual Studio Code, open up the src/compone
 
 ```document.querySelector('title').textContent = "Hello From Viage ";```
     
-    to
+to
     
 ```document.querySelector('title').textContent = "Shopping List";```
     
@@ -54,7 +54,7 @@ Next change the HTML content so that it looks like:
 
 Save your changes and you should see your app instantly update in the browser. Your code should now look like this:
 
-```
+```Javascript
 import { createRouter, Component } from 'viage';
 
 export class App extends Component {
