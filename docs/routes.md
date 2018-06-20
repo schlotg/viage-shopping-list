@@ -52,4 +52,4 @@ Our app is complete enough that it will actually render in the browser. It is no
 ### Next Steps
 Now we need to add the ability to add an element so we can actually have something in our list to view. The next section builds out the *shopping-list-add* component
 
-### [Next (Adding a Shopping List add Component)](docs/shopping-list-add.md)
+### [Next (Adding a Shopping List add Component)](shopping-list-add.md)

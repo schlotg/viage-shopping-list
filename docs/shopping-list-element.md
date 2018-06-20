@@ -65,4 +65,4 @@ You can see that the delete button calls the *ShoppingListService.removeItem()* 
 
 Notice that we are using the standard DOM API addEventListener() instead of re-implementing it.
 
-### [Next (The Shopping List Component)](docs/shopping-list.md)
+### [Next (The Shopping List Component)](shopping-list.md)

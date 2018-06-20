@@ -58,4 +58,4 @@ You will not that the *attach()* function is called on each newly created Compon
 ### Drawing the shopping-list Component
 If you have been paying attention, you will have noticed that the *shopping-list-elements* render into the shopping-list component, but so far the shopping-list component is not attached to the DOM. In the next section we will take care of that by using the router.
 
-### [Next (The Router)](docs/routes.md)
+### [Next (The Router)](routes.md)

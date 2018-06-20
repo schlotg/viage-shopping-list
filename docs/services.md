@@ -218,4 +218,4 @@ export const ShoppingListService = service;
 
 ```
 
-### [Next (Adding a Shopping List Element Component)](docs/shopping-list-element.md)
+### [Next (Adding a Shopping List Element Component)](shopping-list-element.md)
