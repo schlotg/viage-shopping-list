@@ -6,7 +6,6 @@ export class ShoppingListAdd extends Component {
 
   params = {id: ''};
   fields = ['quantity', 'name', 'description'];
-  handler: any;
 
   constructor(params: any) {
     super('shopping-list-add');
@@ -30,13 +29,13 @@ export class ShoppingListAdd extends Component {
     const attachments = this.attachments;
     this.params = params;
     if (params && params.id) {
-      this.updateList();
+      this.updateItem();
     }
 
     attachments.save.addEventListener('click', () => {
       const item: any = {enabled: false};
       this.fields.forEach(k => item[k] = attachments[k].value);
-      if (!(this.params.id)) {
+      if (!this.params.id) {
         ShoppingListService.addItem(item);
       } else {
         const data: any = ShoppingListService.getItem(this.params.id);
@@ -48,12 +47,9 @@ export class ShoppingListAdd extends Component {
 
     // handle back
     attachments.back.addEventListener('click', () => getRouter('main').back());
-
-    // handle changes in data
-    this.addServiceListener(ShoppingListService, 'update', () => this.updateList());
   }
 
-  updateList() {
+  updateItem() {
     const data: any = ShoppingListService.getItem(this.params.id);
     this.fields.forEach(k => this.attachments[k].value = data && data[k]);
   }
