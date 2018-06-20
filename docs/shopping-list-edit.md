@@ -92,11 +92,12 @@ export class ShoppingListAdd extends Component {
 }
 ```
 
-You will note a few small differences. The h3 element in the HTML now conditionally renders *Edit* or *Add Item* based on whether there is a params.id element present.
+You will note a few small differences.
+* The h3 element in the HTML now conditionally renders *Edit* or *Add Item* based on whether there is a params.id element present.
 
-There is now an *updateItem()* function that goes out the service and gets the data for the item passed in via the *params* member. This is also called in the constructor when an id is present so the fields can be populated correctly with that item's data.
+* There is now an *updateItem()* function that goes out the service and gets the data for the item passed in via the *params* member. This is also called in the constructor when an id is present so the fields can be populated correctly with that item's data.
 
-Finally, the save function now had different functionality based on whether the we are in add mode or edit mode.
+* Finally, the save function now had different functionality based on whether the we are in add mode or edit mode.
 
 ### Test it out
 Now our app has the ability to edit, save, delete, clear, and display our shopping list. The new edit functionality should look something like the image below:
