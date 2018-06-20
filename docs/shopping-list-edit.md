@@ -92,7 +92,7 @@ export class ShoppingListAdd extends Component {
 }
 ```
 
-You will note a few small differences. The <h3> element in the HTML now conditionally renders *Edit* or *Add Item* based on whether there is a params.id element present.
+You will note a few small differences. The h3 element in the HTML now conditionally renders *Edit* or *Add Item* based on whether there is a params.id element present.
 
 There is now an *updateItem()* function that goes out the service and gets the data for the item passed in via the *params* member. This is also called in the constructor when an id is present so the fields can be populated correctly with that item's data.
 
