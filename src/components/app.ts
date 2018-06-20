@@ -1,6 +1,5 @@
 import { ShoppingList } from './shopping-list';
 import { ShoppingListAdd } from './shopping-list-add';
-import { ShoppingListService } from '../services/shopping-list-service';
 import { createRouter, Component } from 'viage';
 
 export class App extends Component {
@@ -16,16 +15,13 @@ export class App extends Component {
       <h1 style="text-align: center">${this.title}</h1>
       <div attach="portal"></div>
     `);
-    const router = createRouter('main', this.attachments.portal, true);
 
+    const router = createRouter('main', this.attachments.portal, true);
     router.addStates([
       { name: 'home', component: ShoppingList,  paramsList: [] },
       { name: 'add', component: ShoppingListAdd,  paramsList: [] },
       { name: 'edit', component: ShoppingListAdd,  paramsList: ['id'] },
     ]);
-
     router.setDefaultState('#home');
-
-    ShoppingListService.addEventListener('update', (data: any) => console.log(data));
   }
 }

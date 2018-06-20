@@ -85,6 +85,6 @@ Open the Debugger in your favorite modern browser. My recommendation is to use C
 You can debug it in its native TypeScript form. Place a breakpoint and reload the page. You should see the browser pause on your breakpoint and you should beable to step and inspect your code in TypeScript.
 
 
-### [Next (Services)](services.md)
+### [Next (Services)](docs/services.md)
 
 

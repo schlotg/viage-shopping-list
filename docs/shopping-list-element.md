@@ -61,8 +61,8 @@ You will notice that the component has a member called *item*. This is a local c
 ### Attaching
 There are two buttons in the component that need click handlers attached to them. Viage has a convienent way of accessing HTML elements within a component. When you specify *attach=name* in the HTML it will automatically be able to be accessed in the *this.attachments[name]* . We utilize this feature to addEventListeners to both the buttons and the purchased checkbox.
 
-You can see that the delete button calls the *ShoppingListService.removeItem()* function. The purchased click handler triggers a save in the *ShoppingListService*. The edit button triggers a new Router state to edit the item. We will cover the Router in the next section.
+You can see that the delete button calls the *ShoppingListService.removeItem()* function. The purchased click handler triggers a save in the *ShoppingListService*. The edit button triggers a new Router state to edit the item. We will cover the Router in one of the later sections.
 
 Notice that we are using the standard DOM API addEventListener() instead of re-implementing it.
 
-### [Next (The Router)](routes.md)
+### [Next (The Shopping List Component)](docs/shopping-list.md)
