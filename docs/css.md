@@ -8,7 +8,7 @@ I recommend using inline styles for specific component styling and using the glo
 You can also sepcify style tags in the component HTML. The style rules will be across the entire document so you have to be careful on your selector choices, but when the component goes away its specific styling gets removed from the DOM.
 
 ### Example Style Tags in a Component's HTML
-```css
+```Javascript
   this.setHTML(`
     <style type="text/css">
     shopping-list-element {
@@ -26,7 +26,7 @@ All normal CSS rules apply and all CSS features are available as Viage does noth
 
 ### Making the App look pretty
 First lets add some global style. Add the folowing lines to the src/index.css file:
-```Javascript
+```css
 body {
 font-family: "Segoe UI",Arial,sans-serif;
 font-weight: 400;
