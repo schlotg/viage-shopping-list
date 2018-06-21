@@ -31,12 +31,12 @@ export class ShoppingListElement extends Component {
     this.item = item;
     this.setHTML(`
       <div style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
-        <input attach="purchased" type="checkbox" ${item.purchased ? "checked": ""} />
+        <input attach="enabled" type="checkbox" ${item.purchased ? "checked": ""} />
         <span style="width: 30px; display: inline-block">${item.quantity}</span>
         <span style="width: 100px; display: inline-block">${item.name}</span>
         <span style="width: 300px; display: inline-block">${item.description}</span>
-        <button attach="delete">Delete</button>
-        <button attach="edit">Edit</button>
+        <button attach="delete" style="padding: 1px;">Delete</button>
+        <button attach="edit" style="padding: 1px;">Edit</button>
       </div>
     `);
     this.attachments.delete.addEventListener('click', () => {
