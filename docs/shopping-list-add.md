@@ -50,16 +50,16 @@ export class ShoppingListAdd extends Component {
 }
 ```
 
-At this point now of this should be new. This is very much like the other components that we have created. The HTML is simply a table of fields that can be edited. The text inputs all have attachemnts to the component as do the *save* and *back* buttons.
+At this point none of this should be new. This is very much like the other components that we have created. The HTML is simply a table of fields that can be edited. The text inputs all have attachemnts to the component, as do the *save* and *back* buttons.
 
 ### Save Button
-The *save* button has a click handler attached to it and it gathers each input field and constructs an object that is sent to the *ShoppingListService.addItem()* function. Once that is complete it calls the router to go to the *home* state. In app that calls a server to save, you might want to configure the service to return promises whenever an async operation is performed.
+The *save* button has a click handler attached to it and it gathers each input field and constructs an object that is sent to the *ShoppingListService.addItem()* function. Once the call is complete it calls the router to go to the *home* state. In a app that calls a server to save, you might want to configure the service to return a promise whenever an async operation is performed.
 
 ### Back Button
 The back button calls the *router.back()* function which tells the router to go back to the previous state or the default state if no previous state exists. This is emulating the back button functionality on the browser. If fact if you hit the back button on the browser it will accomplish the same thing.
 
 ### Installing a Route
-The only thing left is to let the router now about this new state. Add the following code into the src/components/app.ts file so that the router states match this:
+The only thing left is to let the router know about this new state. Add the following code into the src/components/app.ts file so that the router states match this:
 
 ```Javascript
 router.addStates([

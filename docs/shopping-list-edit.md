@@ -11,10 +11,10 @@ Viage Components have a params member that can set by the router when the object
     getRouter('main').go(`#edit/${this.item._id}`);
   });
 ```
-This creates a url for the router that contains the items Id.
+This creates a url for the router that contains the item's Id.
 
 ### Adding a new Router State
-Let's add one more Router state to src/components/app.ts. Modify the router states in that fiel so they now look like this:
+Let's add one more Router state to src/components/app.ts. Modify the router states in that file so they now look like this:
 
 ```Javascript
     router.addStates([
@@ -24,7 +24,7 @@ Let's add one more Router state to src/components/app.ts. Modify the router stat
     ]);
 ```
 
-The edit route will reuse the ShoppingListAdd component and will also look for a parameter in the URL and assign it the name id. You can have multiple fields in the parameter list they just need to be seperated by a '/' in the url. When the router changes state to the edit route, it will create a new ShoppingListAdd component and assign the params member to:
+The edit route will reuse the ShoppingListAdd component and will also look for a parameter in the URL and assign it the name *id*. You can have multiple fields in the parameter list, they just need to be seperated by a '/' in the url. When the router changes state to the edit route, it will create a new ShoppingListAdd component and assign the params member to:
 
 ```Javascript
   this.params = {id: <id>};
@@ -93,11 +93,11 @@ export class ShoppingListAdd extends Component {
 ```
 
 You will note a few small differences.
-* The h3 element in the HTML now conditionally renders *Edit* or *Add Item* based on whether there is a params.id element present.
+* The h3 element in the HTML conditionally renders *Edit* or *Add Item* based on whether there is a params.id element present.
 
 * There is now an *updateItem()* function that goes out the service and gets the data for the item passed in via the *params* member. This is also called in the constructor when an id is present so the fields can be populated correctly with that item's data.
 
-* Finally, the save function now had different functionality based on whether the we are in add mode or edit mode.
+* Finally, the save function now has different functionality based on whether the it is in add mode or edit mode.
 
 ### Test it out
 Now our app has the ability to edit, save, delete, clear, and display our shopping list. The new edit functionality should look something like the image below:
@@ -105,6 +105,6 @@ Now our app has the ability to edit, save, delete, clear, and display our shoppi
 ![img4](img4.png)
 
 ### Functional but Ugly!
-So our app is functional but it could sure use some style. Viage does not get in the way or try to interpret CSS at all letting you take full advantage of some of the amazing CSS features that are part of the modern DOM.
+So our app is functional but it could sure use some style. Viage does not get in the way or try to interpret CSS letting you take full advantage of some of the amazing CSS features that are part of the modern DOM.
 
 ### [Next (Adding CSS)](css.md)

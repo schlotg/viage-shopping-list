@@ -1,11 +1,11 @@
 # Viage Shopping List Tutorial
 
 ## Adding CSS
-Viage uses some Webpack functionality to take the contents of index.css and compile and inline into the dest/bundle.js file. All global styling should go into the src/index.css file. As a general rule of thumb the more style rules you have the bigger your DOM memory footprint and the slower the DOM will be able to render.
+Viage uses some Webpack functionality to take the contents of the index.css and compile and inline into the dest/bundle.js file. All global styling should go into the src/index.css file. As a general rule of thumb the more style rules you have the bigger your DOM memory footprint and the slower the DOM will be able to render.
 
 I recommend using inline styles for specific component styling and using the global styles sparingly. However, not all CSS features are usable in inline form. Things like psuedo selectors and CSS animations just aren't possible in inline styling.
 
-You can also sepcify style tags in the component HTML. The style rules will be across the entire document so you have to be careful on your selector choices, but when the component goes away its specific styling gets removed from the DOM.
+You can also sepcify style tags in the component HTML. The style rules will be across the entire document so you have to be careful on your selector choices, but when the component goes away it's specific styling gets removed from the DOM.
 
 ### Example Style Tags in a Component's HTML
 ```Javascript
@@ -25,7 +25,7 @@ In this example you can see a style tag that will be applied to *shopping-list-e
 All normal CSS rules apply and all CSS features are available as Viage does nothing to get in the way of the DOM's CSS processor.
 
 ### Making the App look pretty
-First lets add some global style. Add the folowing lines to the src/index.css file:
+For the sake of this demo I am going to make this easy by adding all the CSS changes into the global CSS file. Add the folowing lines to the src/index.css file:
 ```css
 body {
 font-family: "Segoe UI",Arial,sans-serif;

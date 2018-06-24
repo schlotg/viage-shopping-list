@@ -1,5 +1,5 @@
 # Viage Shopping List Tutorial (In Progress)
-A Viage tutorial that demonstrates how to build a simple shopping list app from the ground up using the Viage framework and CLI. It assumes you are familiar with TypeScript and Modern DOM APIs.
+A Viage tutorial that demonstrates how to build a simple shopping list app from the ground up using the Viage framework and CLI. It assumes you are familiar with TypeScript and modern DOM APIs.
 
 ## What is Viage?
 Viage is a minimal web framework that is also fast and easy to use. You can find out more about it [here](https://github.com/schlotg/viage)
@@ -29,18 +29,19 @@ The Viage CLI has created a new project that uses Webpack, TypeScript, and the V
 
 ```npm run start```
 
-If you look inside the package.json file you will see to entries under scripts, build and start. 'build' does a release build and 'start' builds in debug and launches the debug webservere to serv up your app. As you make changes to the code it will automatically recompile and serve the changes to the browser.
+If you look inside the package.json file you will see three entries under scripts, build, build-embedded, and start. 'build' does a release build, 'build-embedded' inlines the source into the HTML and 'start' builds in debug and launches the debug webserver to serve up the app. As you make changes to the code, it will automatically recompile and serve the changes to the browser.
 
 Your default browser should have opened a new tab with the Viage app running in it. If not you can always got to: [http://localhost:8080/](http://localhost:8080/)
 
 You should see "Hello From Viage" in browser.
+*Note - If you are running IE-11 or a really old browser you will see a message stating that your browser is not supported*
 
 ### Change the Title and the Page Content
-Components draw and interact with the user and Services are singletons responsible for managing data. Components usually live in the src/components directory but you may organize them however you want as long as they are in the src directory. This is also true of Services, they generally live in the src/services directory.
+Components draw and interact with the user and Services are singletons that are responsible for managing data. Components usually live in the src/components directory, but you may organize them however you want as long as they are in the src directory. This is also true of Services, they generally live in the src/services directory.
 
-When code is compiled it is compiled to a single dest/bundle.js file. When using the start command you won't see it as the development server sends the output elsewhere. However, if you compile using the 'npm run build' command, you will see the dest folder populated with the bundle.js file.
+When code is compiled, it is compiled to a single dest/bundle.js file. When using the start command you won't see the dest folder as the development server sends the output elsewhere. However, if you compile using the 'npm run build' command, you will see the dest folder populated with the bundle.js file.
 
-In your favorite editor, I recommend Visual Studio Code, open up the src/components/app.t file and inside your projects directory and change:
+In your favorite editor, I recommend Visual Studio Code, open up the src/components/app.t file and inside your projects directory change:
 
 ```title = 'Hello From Viage';```
 
@@ -69,20 +70,20 @@ export class App extends Component {
 ```
 
 ### Components
-All components must derive off of the Component base class which is located in Viage/core. TypeScript classes must call the constructor of their base class first thing in the constructor. This is done with the super() call and a component HTML tag name must be passed down to the base class. In this case the component is app and if you inspect the HTML using the browser debug tools you will see a DOM element named 'app'. This DOM element represents an instance of our component and will contain any HTML specified in the *setHTML()* function.
+All components must derive off of the Component base class which is located in Viage/core. TypeScript classes must call the constructor of their base class first thing in the constructor. This is done with the super() call and a component HTML tag name must be passed down to the base class. In this case the component is app and if you inspect the DOM using the browser debug tools, you will see a DOM element named \<app\>. This DOM element represents an instance of the component and will contain any HTML specified in the *setHTML()* function.
 
-In the next line you can see that we use the standard DOM API *querySelector()* to find the title element of the DOM and set its text content to the variable *title*. These are just standard modern DOM APIs.
+On the next line you can see that we use the standard DOM API *querySelector()* to find the title element of the DOM and set its text content to the variable *title*. These are just standard modern DOM APIs.
 
-A component must have some place to render its HTML into. This is where the *attach()* function comes in. attach() is defined in the Component base class. It attaches this component to a DOM element that matches the CSS selector 'page'.
+A component must have some place to render its HTML to. This is where the *attach()* function comes in. attach() is defined in the Component base class. It attaches this component to a DOM element that matches the CSS selector 'page'.
 
 Lastly, we set the HTML for this component using the *setHTML()* function. It is also defined in the Component base class. Notice that we use the backtick string functionality of ES6. By taking advantage of this modern Javascript feature we can write natural HTML that spans multiple lines and use the built-in templating to insert values.
 
 ### Debugging
-Open the Debugger in your favorite modern browser. My recommendation is to use Chrome as it seems to have the best development tools but certainly the other major browsers are not far behind. You should be able to navigate to the app file we just modified. In Chrome you can find it at:
+Open the Debugger in your favorite modern browser. My recommendation is to use Chrome as it seems to have the best development tools, but certainly the other major browsers are not far behind. You should be able to navigate to the app file we just modified. In Chrome you can find it at:
 
 ```webpack/./src/components/app.ts```
 
-You can debug it in its native TypeScript form. Place a breakpoint and reload the page. You should see the browser pause on your breakpoint and you should beable to step and inspect your code in TypeScript.
+You can debug it in its native TypeScript form. Place a breakpoint and reload the page. You should see the browser pause on your breakpoint, and you should be able to step and inspect your code in TypeScript.
 
 
 ### [Next (Services)](docs/services.md)
