@@ -8,8 +8,12 @@ At this point, we have a very functional application. If you type ```npm run bui
 ### Amount of Code
 The amount of coding required to produce this app is on par with most of the popular frameworks if not smaller. However, the amount of specific framework knowledge required to effectively use Viage is small. Viage should work with most Javascript libraries right out of the box. The Component / Service model is reasonably effective at keeping code organized, resusable, maintainable, and scalable.
 
-For the sake of codes size and complexity comparisons, I have implemented this same app in React and Angular. You can find thme here:
+For the sake of codes size and complexity comparisons, I have implemented this same app in React and Angular. You can find them and a running Viage version here:
+
+[Viage](https://schlotg.github.io/shopping-list.html#home)
 
 React(Coming Soon)
 
-Angular(Coming Soon)
+[Angular - running](https://schlotg.github.io/angular-shopping-list/home)
+
+[Angular - project](https://github.com/schlotg/angular-shopping-list)

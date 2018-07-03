@@ -5,6 +5,7 @@ A Viage tutorial that demonstrates how to build a simple shopping list app from 
 Viage is a minimal web framework that is also fast and easy to use. You can find out more about it [here](https://github.com/schlotg/viage)
 
 ## Tutorial
+You can view what we are about to build [here](https://schlotg.github.io/shopping-list.html#home)
 
 ### Installation
 The first thing we need to do is install the Viage CLI. This assumes that you have Node 10.x or newer installed. If not, go to
