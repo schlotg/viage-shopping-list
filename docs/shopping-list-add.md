@@ -49,7 +49,7 @@ export class ShoppingListAdd extends Component {
   }
 }
 ```
-### attach
+### Attach attribute
 This is very much like the other components that we have created. The HTML is simply a table of fields that can be edited. This was covered previously but I want to re-iterate. Notice a **attach="save"** and a **attach="back"** attribute in the button HTML. This is the only custom HTML attribute that Viage uses. It has very simple functionality. Putting a attach property in the HTML will instruct the **setHTML()** function to get the element from the DOM, once it is added, and put it in a collection of elements named **attachments**. This is merely a helper to allow the programmer quick and easy access through the **this.attachment** member. As an example, to access the save button merely write something like this:
 ```Javascript
   const save = this.attachments.save;
