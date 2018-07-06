@@ -43,17 +43,17 @@ export class ShoppingList extends Component {
 ```
 
 ### List HTML
-There are several things worth noting here. This component creates a Add button, Clear button, and a div that acts as a container to render the *ShoppingListElements* into. Just like the previous step we add click handlers to our buttons which will clear the list and tell the router to go to the Add state.
+There are several things worth noting here. This component creates a **Add** button, **Clear** button, and a div that acts as a container to render the *ShoppingListElements* into. Just like the previous step we add click handlers to our buttons which will clear the list and tell the router to go to the Add state.
 
 ### Interacting with the Service
-This component installs a update event listener on the *ShoppingListService*. If you recall, this gets fired everytime the data changes in the service. You'll note that we use the Viage Component API  *addServiceListener()* to add the event listener. This is because this function has a nice cleanup mechanism that automatically removes the listener when this component gets destroyed. It is not neccesary to do this with event listeners in the owning component's HTML. This due to the fact that the Component will destroy its HTML elements when it goes away which in turn destroys the event listeners.
+This component installs a update event listener on the *ShoppingListService*. If you recall, this gets fired everytime the data changes in the service. You'll note that we use the Viage Component API  *addServiceListener()* to add the event listener. This is because this function has a nice cleanup mechanism that automatically removes the listener when this component gets destroyed. It is not neccesary to do this with event listeners in the owning component's HTML. This due to the fact that the Component will destroy its HTML elements when it goes away, which in turn destroys the event listeners.
 
 ### Drawing the List
-The *updateList()* function first calls *clearComponents()* which clears out all the child components that this component ones. Next the containers children are cleared out by assigning the container's inner HTML to an empty string.
+The *updateList()* function first calls *clearComponents()* which clears out all the child components that this component owns. Next the containers children are cleared out by assigning the container's inner HTML to a empty string.
 
-Next we call the *ShoppingListService.forEach()* to get each element from the service. Next we call the *createComponent()* function to create the *ShoppingListElement* and then init it with the item's data. The *createComponent()* function is a Viage API that creates the component and then adds it to *this.components[]* . When the component get's destroyed it will automatically destroy all the child components as well.
+Next we call the *ShoppingListService.forEach()* to get each element from the service. Then we call the *createComponent()* function to create the *ShoppingListElement* and init it with the item's data. The *createComponent()* function is a Viage API that creates the component and then adds it to *this.components[]* . When the component gets destroyed, it will automatically destroy all of its child components as well.
 
-You will not that the *attach()* function is called on each newly created Component. The container element is passed in so that each child component will render into the container.
+You will note that the *attach()* function is called on each newly created Component. The container element is passed in so that each child component will render into the container.
 
 ### Drawing the shopping-list Component
 If you have been paying attention, you will have noticed that the *shopping-list-elements* render into the shopping-list component, but so far the shopping-list component is not attached to the DOM. In the next section we will take care of that by using the router.

@@ -49,14 +49,17 @@ export class ShoppingListAdd extends Component {
   }
 }
 ```
-
-At this point none of this should be new. This is very much like the other components that we have created. The HTML is simply a table of fields that can be edited. The text inputs all have attachemnts to the component, as do the *save* and *back* buttons.
+### attach
+This is very much like the other components that we have created. The HTML is simply a table of fields that can be edited. This was covered previously but I want to re-iterate. Notice a **attach="save"** and a **attach="back"** attribute in the button HTML. This is the only custom HTML attribute that Viage uses. It has very simple functionality. Putting a attach property in the HTML will instruct the **setHTML()** function to get the element from the DOM, once it is added, and put it in a collection of elements named **attachments**. This is merely a helper to allow the programmer quick and easy access through the **this.attachment** member. As an example, to access the save button merely write something like this:
+```Javascript
+  const save = this.attachments.save;
+```
 
 ### Save Button
-The *save* button has a click handler attached to it and it gathers each input field and constructs an object that is sent to the *ShoppingListService.addItem()* function. Once the call is complete it calls the router to go to the *home* state. In a app that calls a server to save, you might want to configure the service to return a promise whenever an async operation is performed.
+The *save* button has a click handler added to it and it gathers each input field and constructs an object that is sent to the *ShoppingListService.addItem()* function. Once the call is complete, it calls the router to go to the *home* state. In a app that calls a server to save, you might want to configure the service to return a promise whenever an async operation is performed.
 
 ### Back Button
-The back button calls the *router.back()* function which tells the router to go back to the previous state or the default state if no previous state exists. This is emulating the back button functionality on the browser. If fact if you hit the back button on the browser it will accomplish the same thing.
+The back button calls the *router.back()* function which tells the router to go back to the previous state or to the default state if no previous state exists. This is emulating the back button functionality on the browser. If fact if you hit the back button on the browser it will accomplish the same thing.
 
 ### Installing a Route
 The only thing left is to let the router know about this new state. Add the following code into the src/components/app.ts file so that the router states match this:

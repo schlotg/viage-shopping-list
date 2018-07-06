@@ -1,7 +1,7 @@
 # Viage Shopping List Tutorial
 
 ## Adding Routes
-Viage has a built in router that is light weight and easy to use. The great thing about Viage is that if you want to use a different router, go for it! It should be fairly straightforward to integrate into your project given Viage's very small and unobtrusive footprint.
+Viage has a built in hash router that is light weight and easy to use. The great thing about Viage is that if you want to use a different router, go for it! It should be fairly straightforward to integrate into your project given Viage's very small and unobtrusive footprint.
 
 ### Setting up the Router
 Modify the code in src/components/app so it looks like the following:

@@ -1,7 +1,7 @@
 # Viage Shopping List Tutorial
 
 ## Services
-In Viage, Services are used to manage data or any other global resource. Components should only contain other components and the glu-logic to display data to the user. In contrast, Services should not contain any display logic and handle all aspects of managing the data. This includes notifying components when the data has changed. Services are singletons and do need to be instantiated, you can use them directly by importing them.
+In Viage, Services are used to manage data or any other global resource. Components should only contain other components and the glu-logic to display data to the user. In contrast, Services should not contain any display logic and handle all aspects of managing the data. This includes setting, getting, saving, and notifying components when the data has changed. Services are singletons and do need to be instantiated, you can use them directly by importing them.
 
 ### Create a Service
 Using the Viage CLI, create a new service by typing the following in a shell in your project's direrctory:
@@ -48,7 +48,7 @@ class ShoppingListServiceSingleton extends Service {
 Each Shopping list item is going to have a name, description, quantity, and a purchased flag to indicate if it has been purchased or not. The _id field will be used internally by the service to uniquely track each item. We export the interface so it can be used by components interacting with the data.
 
 ### Data Retrieval and Storage
-Normally a service would save and retrieve data from a server. Viage doesn't try to duplicate functionality that is already in the DOM. I reccomend using the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch). It is an excellant modern interface that supports promises and is available across the 4 big browsers.
+Normally a service would save and retrieve data from a server. Viage doesn't try to duplicate functionality that is already in the Browser. I reccomend using the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch). It is an excellant modern interface that supports promises and is available across the 4 big browsers.
 
 Since writing server code is beyond the scope of this tutorial, we will write to the browser's local storage instead. Add the following code to the shopping-list-service:
 
