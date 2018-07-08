@@ -4,7 +4,7 @@ import { createRouter, Component } from 'viage';
 
 export class App extends Component {
 
-  title = "Shopping List";
+  private title = 'Shopping List';
 
   constructor() {
     super('app');
@@ -23,5 +23,7 @@ export class App extends Component {
       { name: 'edit', component: ShoppingListAdd,  paramsList: ['id'] },
     ]);
     router.setDefaultState('#home');
+    // start of by going to the state the page was loaded on
+    router.go(location.href);
   }
 }

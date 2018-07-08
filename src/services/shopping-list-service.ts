@@ -42,7 +42,7 @@ class ShoppingListServiceSingleton extends Service {
   private findIndex(id: string): number {
     let i = 0;
     const list = this.list;
-    for (; i < list.length; ++i) {
+    for (; i < list.length; i += 1) {
       if (list[i]._id === id) { break; }
     }
     return i;
