@@ -29,6 +29,8 @@ export class App extends Component {
       { name: 'home', component: ShoppingList,  paramsList: [] },
     ]);
     router.setDefaultState('#home');
+    // start of by going to the state the page was loaded on
+    router.go(location.href);
   }
 }
 ```
@@ -36,13 +38,15 @@ export class App extends Component {
 ### Adding a Portal
 The Router needs somewhere to render into. Notice that we added a new div that gets attached with the name *portal*.
 
-Next we create a router named *main*, give it our portal div to render into, and tell it to use the DOM location API.
+### Creating a router
+Next we create a router named *main*, give it our portal div to render into, and tell it to use the DOM location API. Only one router can use the DOM. You can can other routers that control the render state into other portals that don't use the DOM location or History APIs.
 
 ### Adding Router States
 Next we add router states. The name will be translated to the url #home. When that url is activated a *ShoppingList* component is created nad attached to the portal. When the route or state is changed, the then the active component is deleted and a new one is created based on the route configuration.
 
 ### Setting a Default Router State
-Lastly you will note that we set a default state. This is the state that comes up when the app starts up.
+Lastly you will note that we set a default state. This is the state that comes up when the app starts up. By telling the the router to go to the initial location
+on the next line, this allows people to use urls that have route information stored in them. If a URL like this is used the app will open up in the route the URL was captured on.
 
 ### Viewing the Changes so far
 Our app is complete enough that it will actually render in the browser. It is not much to look at because there are no items in our shopping list yet. You should see something that looks like:
