@@ -1,12 +1,16 @@
 import { Component } from 'viage';
 import { Item, ShoppingListService } from '../services/shopping-list-service';
-import { getRouter } from 'viage';
+import { States } from './app';
+
+interface Id {
+  id: string;
+}
 
 export class ShoppingListElement extends Component {
 
   private item: Item;
 
-  constructor(){
+  constructor() {
     super('shopping-list-element');
   }
 
@@ -22,16 +26,17 @@ export class ShoppingListElement extends Component {
         <button attach="edit" style="padding: 1px;">Edit</button>
       </div>
     `);
-    this.attachments.delete.addEventListener('click', () => {
+    const attachments = this.attachments;
+    attachments.delete.addEventListener('click', () => {
       ShoppingListService.removeItem(this.item._id);
     });
-    const enabled = this.attachments.enabled;
-    enabled.addEventListener('click', () => {
-      this.item.purchased = enabled.checked;
+    attachments.enabled.addEventListener('click', () => {
+      this.item.purchased = attachments.enabled.checked;
       ShoppingListService.save();
     });
     this.attachments.edit.addEventListener('click', () => {
-      getRouter('main').go(`#edit/${this.item._id}`);
+      const url = this.router.createUrl<Id>(States.EDIT, {id: this.item._id});
+      this.router.go(url);
     });
     return this;
   }

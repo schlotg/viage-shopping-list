@@ -2,6 +2,12 @@ import { ShoppingList } from './shopping-list';
 import { ShoppingListAdd } from './shopping-list-add';
 import { createRouter, Component } from 'viage';
 
+export enum States {
+  HOME = 'home',
+  ADD = 'add',
+  EDIT = 'edit'
+};
+
 export class App extends Component {
 
   private title = 'Shopping List';
@@ -16,14 +22,13 @@ export class App extends Component {
       <div attach="portal"></div>
     `);
 
-    const router = createRouter('main', this.attachments.portal, true);
+    const router = createRouter('main', this.attachments.portal, 'HASH');
     router.addStates([
-      { name: 'home', component: ShoppingList,  paramsList: [] },
-      { name: 'add', component: ShoppingListAdd,  paramsList: [] },
-      { name: 'edit', component: ShoppingListAdd,  paramsList: ['id'] },
+      { name: States.HOME, component: ShoppingList,  type: 'DEFAULT' },
+      { name: States.ADD, component: ShoppingListAdd,  type: 'NORMAL' },
+      { name: States.EDIT, component: ShoppingListAdd,  type: 'NORMAL' },
     ]);
-    router.setDefaultState('#home');
     // start of by going to the state the page was loaded on
-    router.go(location.href);
+    router.start();
   }
 }

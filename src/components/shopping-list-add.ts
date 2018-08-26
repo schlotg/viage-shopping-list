@@ -1,14 +1,21 @@
 import { Component } from 'viage';
 import { ShoppingListService } from '../services/shopping-list-service';
-import { getRouter } from 'viage';
+import { States } from './app';
+
+interface ComponentParams {
+  id?: string;
+}
 
 export class ShoppingListAdd extends Component {
 
-  params = {id: ''};
+  params: ComponentParams = {id: ''};
   fields = ['quantity', 'name', 'description'];
 
-  constructor(params: any) {
+  constructor() {
     super('shopping-list-add');
+  }
+
+  init(params: ComponentParams) {
     this.setHTML(`
       <h3>${params && params.id ? 'Edit' : 'Add Item'}</h3>
       <table>
@@ -42,15 +49,16 @@ export class ShoppingListAdd extends Component {
         this.fields.forEach(k => data[k] = item[k]);
         ShoppingListService.save();
       }
-      getRouter('main').go('#home');
+      const homeUrl = this.router.createUrl<void>(States.HOME);
+      this.router.go(homeUrl);
     });
 
     // handle back
-    attachments.back.addEventListener('click', () => getRouter('main').back());
+    attachments.back.addEventListener('click', () => this.router.back());
   }
 
   updateItem() {
     const data: any = ShoppingListService.getItem(this.params.id);
-    this.fields.forEach(k => this.attachments[k].value = data && data[k]);
+    this.fields.forEach((k: string) => this.attachments[k].value = data && data[k]);
   }
 }
