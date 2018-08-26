@@ -17,7 +17,11 @@ Modify the newly generated component so it looks like this:
 ```Javascript
 import { Component } from 'viage';
 import { Item, ShoppingListService } from '../services/shopping-list-service';
-import { getRouter } from 'viage';
+import { States } from './app';
+
+interface Id {
+  id: string;
+}
 
 export class ShoppingListElement extends Component {
 
@@ -39,16 +43,17 @@ export class ShoppingListElement extends Component {
         <button attach="edit" style="padding: 1px;">Edit</button>
       </div>
     `);
-    this.attachments.delete.addEventListener('click', () => {
+    const attachments = this.attachments;
+    attachments.delete.addEventListener('click', () => {
       ShoppingListService.removeItem(this.item._id);
     });
-    const purchased = this.attachments.enabled;
-    purchased.addEventListener('click', () => {
-      this.item.purchased = purchased.checked;
+    attachments.enabled.addEventListener('click', () => {
+      this.item.purchased = attachments.enabled.checked;
       ShoppingListService.save();
     });
     this.attachments.edit.addEventListener('click', () => {
-      getRouter('main').go(`#edit/${this.item._id}`);
+      const url = this.router.createUrl<Id>(States.EDIT, {id: this.item._id});
+      this.router.go(url);
     });
     return this;
   }
@@ -64,5 +69,9 @@ There are two buttons in the component that need click handlers attached to them
 You can see that the delete button calls the *ShoppingListService.removeItem()* function. The purchased click handler triggers a save in the *ShoppingListService*. The edit button triggers a new Router state to edit the item. We will cover the Router in one of the later sections.
 
 Notice that we are using the standard DOM APIs such as addEventListener().
+
+### Routing
+**this.router** is a an instance of the router used to create the component. We will get into more detaila bout routing soon but for now notice that we use the router to create a url by passing in the state name and data. We then call router.go(url) to change the router state. In this case when the edit button is clicked, the router changes to teh edit state.
+
 
 ### [Next (The Shopping List Component)](shopping-list.md)

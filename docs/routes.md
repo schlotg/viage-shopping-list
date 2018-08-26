@@ -10,9 +10,15 @@ Modify the code in src/components/app so it looks like the following:
 import { ShoppingList } from './shopping-list';
 import { createRouter, Component } from 'viage';
 
+export enum States {
+  HOME = 'home',
+  ADD = 'add',
+  EDIT = 'edit'
+};
+
 export class App extends Component {
 
-  title = "Shopping List";
+  private title = 'Shopping List';
 
   constructor() {
     super('app');
@@ -24,29 +30,27 @@ export class App extends Component {
       <div attach="portal"></div>
     `);
 
-    const router = createRouter('main', this.attachments.portal, true);
+    const router = createRouter('main', this.attachments.portal, 'HASH');
     router.addStates([
-      { name: 'home', component: ShoppingList,  paramsList: [] },
+      { name: States.HOME, component: ShoppingList,  type: 'DEFAULT' },
     ]);
-    router.setDefaultState('#home');
     // start of by going to the state the page was loaded on
-    router.go(location.href);
+    router.start();
   }
 }
 ```
 
 ### Adding a Portal
-The Router needs somewhere to render into. Notice that we added a new div that gets attached with the name *portal*.
+The Router needs somewhere to render into. Notice that we added a new div that gets attached with the name *portal*. Whenever the router changes state it creates a new component and then attaches it to the portal.
 
 ### Creating a router
-Next we create a router named *main*, give it our portal div to render into, and tell it to use the DOM location API. Only one router can use the DOM. You can can other routers that control the render state into other portals that don't use the DOM location or History APIs.
+Next we create a router named *main*, give it our portal div to render into. In this example we are configuring the router to be a HASH router but it could just as easily be a 'LOCATION' or 'STANDALONE' router. You can read more about that in the Viage API documentation found [here](https://github.com/schlotg/viage/blob/master/docs/api.md). HASH and LOCATION routers use the DOM's location and history object so there can only be one of those at a time.
 
 ### Adding Router States
-Next we add router states. The name will be translated to the url #home. When that url is activated a *ShoppingList* component is created nad attached to the portal. When the route or state is changed, the then the active component is deleted and a new one is created based on the route configuration.
+Next we add a home router state. Each state consists of a name, a componet to construct and attach on state change, and whether the state is a default state or a normal state. There should only be one default state and that is the state the router defaults two when it is first coming up or if the url doesn't make sense.
 
-### Setting a Default Router State
-Lastly you will note that we set a default state. This is the state that comes up when the app starts up. By telling the the router to go to the initial location
-on the next line, this allows people to use urls that have route information stored in them. If a URL like this is used the app will open up in the route the URL was captured on.
+### Starting the Router
+Once it is configured, we kick out the router by calling **start()**.
 
 ### Viewing the Changes so far
 Our app is complete enough that it will actually render in the browser. It is not much to look at because there are no items in our shopping list yet. You should see something that looks like:

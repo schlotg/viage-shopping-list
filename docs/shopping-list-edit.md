@@ -4,47 +4,37 @@
 It turns out that Adding and Editing an Item are very similar in functionality. It makes sense to use the *shopping-list-add* component to edit as well. We just have to be able to pass in a item id so that the add component knows how to pre-populate the component.
 
 ### Passing in Params
-Viage Components have a params member that can set by the router when the object is created. This allows you to have parameters in the urls that trigger state changes. If you were paying attention you saw that the *edit* button in the shopping-list-element component had a handler that looked like this:
+Viage Components, when constructed by the Router, will have the **init()** function called with any data in the state's url. Any JSON-able data can be passe into the **router.createUrl()** function and that data data will be pasee into the **init()** function. We can use that to adjust the header of this component based on whether it is being used as a Edit component or and Add component. Change the setHTML call in init to show the correct heading:
 
 ```Javascript
-  this.attachments.edit.addEventListener('click', () => {
-    getRouter('main').go(`#edit/${this.item._id}`);
-  });
-```
-This creates a url for the router that contains the item's Id.
-
-### Adding a new Router State
-Let's add one more Router state to src/components/app.ts. Modify the router states in that file so they now look like this:
-
-```Javascript
-    router.addStates([
-      { name: 'home', component: ShoppingList,  paramsList: [] },
-      { name: 'add', component: ShoppingListAdd,  paramsList: [] },
-      { name: 'edit', component: ShoppingListAdd,  paramsList: ['id'] },
-    ]);
+  init(params: ComponentParams) {
+    this.setHTML(`
+      <h3>${params && params.id ? 'Edit' : 'Add Item'}</h3>
+  ...
 ```
 
-The edit route will reuse the ShoppingListAdd component and will also look for a parameter in the URL and assign it the name *id*. You can have multiple fields in the parameter list, they just need to be seperated by a '/' in the url. When the router changes state to the edit route, it will create a new ShoppingListAdd component and assign the params member to:
-
-```Javascript
-  this.params = {id: <id>};
-```
-
-### Adding Edit functionality to the Shopping List Add Component
-Modify the src/components/shopping-list-add.ts component so that it now looks like this:
+### Handling Edit functionality
+To make the edit functionality work we need to go get the item's data when the component loads so it can be edited. The whole file should now look like this:
 
 ```Javascript
 import { Component } from 'viage';
 import { ShoppingListService } from '../services/shopping-list-service';
-import { getRouter } from 'viage';
+import { States } from './app';
+
+interface ComponentParams {
+  id?: string;
+}
 
 export class ShoppingListAdd extends Component {
 
-  params = {id: ''};
+  params: ComponentParams = {id: ''};
   fields = ['quantity', 'name', 'description'];
 
-  constructor(params: any) {
+  constructor() {
     super('shopping-list-add');
+  }
+
+  init(params: ComponentParams) {
     this.setHTML(`
       <h3>${params && params.id ? 'Edit' : 'Add Item'}</h3>
       <table>
@@ -78,26 +68,36 @@ export class ShoppingListAdd extends Component {
         this.fields.forEach(k => data[k] = item[k]);
         ShoppingListService.save();
       }
-      getRouter('main').go('#home');
+      const homeUrl = this.router.createUrl<void>(States.HOME);
+      this.router.go(homeUrl);
     });
 
     // handle back
-    attachments.back.addEventListener('click', () => getRouter('main').back());
+    attachments.back.addEventListener('click', () => this.router.back());
   }
 
   updateItem() {
     const data: any = ShoppingListService.getItem(this.params.id);
-    this.fields.forEach(k => this.attachments[k].value = data && data[k]);
+    this.fields.forEach((k: string) => this.attachments[k].value = data && data[k]);
   }
 }
 ```
 
-You will note a few small differences.
-* The h3 element in the HTML conditionally renders *Edit* or *Add Item* based on whether there is a params.id element present.
+To make things cleaner, there is now and updateItem function that takes care of getting data from the service and updating the appropraite HTML elements.
 
-* There is now an *updateItem()* function that goes out to the service and gets the data for the item passed in via the *params* member. This is also called in the constructor when an id is present so the fields can be populated correctly with that item's data.
 
-* Finally, the save function now has different functionality based on whether the it is in add mode or edit mode.
+### Adding a new Router State
+Let's add one more Router state to src/components/app.ts. Modify the router states in app.ts so they now look like this:
+
+```Javascript
+    router.addStates([
+      { name: States.HOME, component: ShoppingList,  type: 'DEFAULT' },
+      { name: States.ADD, component: ShoppingListAdd,  type: 'NORMAL' },
+      { name: States.EDIT, component: ShoppingListAdd,  type: 'NORMAL' },
+    ]);
+```
+
+The edit route will reuse the ShoppingListAdd component When the router changes state to the edit route, it will create a new ShoppingListAdd component, extract data from the url, and pass it in via the **init()** function.
 
 ### Test it out
 Now our app has the ability to edit, save, delete, clear, and display our shopping list. The new edit functionality should look something like the image below:
@@ -105,6 +105,6 @@ Now our app has the ability to edit, save, delete, clear, and display our shoppi
 ![img4](img4.png)
 
 ### Functional but Ugly!
-So our app is functional but it could sure use some style. Viage does not get in the way or try to interpret CSS letting you take full advantage of some of the amazing CSS features that are part of the modern DOM.
+So our app is functional but it could sure use some style. Viage does not get in the way or try to interpret CSS. This lets you take full advantage of some of the amazing CSS features that are part of the modern DOM.
 
 ### [Next (Adding CSS)](css.md)

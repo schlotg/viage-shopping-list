@@ -55,7 +55,11 @@ Save your changes and you should see your app instantly update in the browser. Y
 ```Javascript
 import { Component } from 'viage';
 
-title = "Shopping List";
+export enum States {
+  HOME = 'home',
+  ADD = 'add',
+  EDIT = 'edit'
+};
 
 export class App extends Component {
   constructor() {
@@ -77,7 +81,9 @@ On the next line you can see that we use the standard DOM API *querySelector()* 
 
 A component must have some place to render its HTML to. This is what the *attach()* function is for. **attach()** is defined in the Component base class. It attaches this component to a DOM element that matches the CSS selector passed in. In this case that it is **page**.
 
-Lastly, we set the HTML for this component using the *setHTML()* function. It is also defined in the Component base class. Notice that we use the backtick string functionality of ES6 (also know as Template Strings). By taking advantage of this modern Javascript feature, we can write natural HTML that spans multiple lines and use the built-in templating to insert values. Notice that the title is inserted into the h1 tag using the ${this.title} syntax.
+We set the HTML for this component using the *setHTML()* function. It is also defined in the Component base class. Notice that we use the backtick string functionality of ES6 (also know as Template Strings). By taking advantage of this modern Javascript feature, we can write natural HTML that spans multiple lines and use the built-in templating to insert values. Notice that the title is inserted into the h1 tag using the ${this.title} syntax.
+
+Near the top you will also see that there is a States enum defined to defined application states. This will be explained in more detail in the router section of the tutorial
 
 ### Debugging
 Open the Debugger in your favorite modern browser. My recommendation is to use Chrome as it seems to currently have the best development tools. Certainly the other major browsers are not far behind. You should be able to navigate to the app.ts file we just modified. In Chrome you can find it at:

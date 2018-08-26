@@ -11,14 +11,22 @@ Now modify the code so that it looks lke this:
 ```Javascript
 import { Component } from 'viage';
 import { ShoppingListService } from '../services/shopping-list-service';
-import { getRouter } from 'viage';
+import { States } from './app';
+
+interface ComponentParams {
+  id?: string;
+}
 
 export class ShoppingListAdd extends Component {
 
+  params: ComponentParams = {id: ''};
   fields = ['quantity', 'name', 'description'];
 
-  constructor(params: any) {
+  constructor() {
     super('shopping-list-add');
+  }
+
+  init(params: ComponentParams) {
     this.setHTML(`
       <h3>Add Item</h3>
       <table>
@@ -42,15 +50,17 @@ export class ShoppingListAdd extends Component {
       const item: any = {enabled: false};
       this.fields.forEach(k => item[k] = attachments[k].value);
       ShoppingListService.addItem(item);
-      getRouter('main').go('#home');
+      const homeUrl = this.router.createUrl<void>(States.HOME);
+      this.router.go(homeUrl);
     });
 
-    attachments.back.addEventListener('click', () => getRouter('main').back());
+        // handle back
+    attachments.back.addEventListener('click', () => this.router.back());
   }
 }
 ```
 ### Attach attribute
-This is very much like the other components that we have created. The HTML is simply a table of fields that can be edited. This was covered previously but I want to re-iterate. Notice a **attach="save"** and a **attach="back"** attribute in the button HTML. This is the only custom HTML attribute that Viage uses. It has very simple functionality. Putting a attach property in the HTML will instruct the **setHTML()** function to get the element from the DOM, once it is added, and put it in a collection of elements named **attachments**. This is merely a helper to allow the programmer quick and easy access through the **this.attachment** member. As an example, to access the save button merely write something like this:
+This is very much like the other components that we have created. The HTML is simply a table of fields that can be edited. This was covered previously but I want to re-iterate. Notice a **attach="save"** and a **attach="back"** attribute in the button HTML. This is the only custom HTML attribute that Viage uses. It has very simple functionality. Putting an attach property in the HTML will instruct the **setHTML()** function to get the element from the DOM, once it is added, and put it in a collection of elements named **attachments**. This is merely a helper to allow the programmer quick and easy access through the **this.attachment** member. As an example, to access the save button merely write something like this:
 ```Javascript
   const save = this.attachments.save;
 ```
@@ -66,8 +76,8 @@ The only thing left is to let the router know about this new state. Add the foll
 
 ```Javascript
 router.addStates([
-      { name: 'home', component: ShoppingList,  paramsList: [] },
-      { name: 'add', component: ShoppingListAdd,  paramsList: [] },
+      { name: States.HOME, component: ShoppingList,  type: 'DEFAULT' },
+      { name: States.ADD, component: ShoppingListAdd,  type: 'NORMAL' },,
     ]);
 ```
 

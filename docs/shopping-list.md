@@ -14,21 +14,27 @@ Now modify the code in the new component so lit looks like the following:
 import { Component } from 'viage';
 import { ShoppingListService } from '../services/shopping-list-service';
 import { ShoppingListElement } from './shopping-list-element';
-import { getRouter } from 'viage';
+import { States } from './app';
 
 export class ShoppingList extends Component {
 
   constructor(){
     super('shopping-list');
+  }
+
+  init() {
     this.setHTML(`
       <button attach="add" style="color:#00c700">Add</button>
       <button attach="clear" style="color:#ff6e6e">Clear</button>
-      <div attach="list" style="margin-top:20px; width:630px;padding:5px;background-color:#eeeeee"></div>
+      <div attach="list" style="margin-top:20px; width:630px; padding:5px; background-color: #eeeeee"></div>
     `);
     this.updateList();
     this.addServiceListener(ShoppingListService, 'update', () => this.updateList());
     this.attachments.clear.addEventListener('click', () => ShoppingListService.clear());
-    this.attachments.add.addEventListener('click', () => getRouter('main').go('#add'));
+    this.attachments.add.addEventListener('click', () => {
+      const addUrl = this.router.createUrl<void>(States.ADD);
+      this.router.go(addUrl);
+    });
   }
 
   updateList(){
