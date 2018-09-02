@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShoppingListAdd should initialize in add mode correctly 1`] = `
+"
+      <h3>Add Item</h3>
+      <table>
+        <tbody><tr>
+          <th>Quantity</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><input type=\\"number\\" attach=\\"quantity\\" style=\\"width: 60px\\"></td>
+          <td><input type=\\"text\\" attach=\\"name\\" style=\\"width: 100px\\"></td>
+          <td><input type=\\"text\\" attach=\\"description\\" style=\\"width: 300px\\"></td>
+        </tr>
+      </tbody></table>
+      <button attach=\\"save\\">Save</button>
+      <button attach=\\"back\\">Back</button>
+    "
+`;
+
+exports[`ShoppingListAdd should initialize in edit mode correctly 1`] = `
+"
+      <h3>Edit</h3>
+      <table>
+        <tbody><tr>
+          <th>Quantity</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><input type=\\"number\\" attach=\\"quantity\\" style=\\"width: 60px\\"></td>
+          <td><input type=\\"text\\" attach=\\"name\\" style=\\"width: 100px\\"></td>
+          <td><input type=\\"text\\" attach=\\"description\\" style=\\"width: 300px\\"></td>
+        </tr>
+      </tbody></table>
+      <button attach=\\"save\\">Save</button>
+      <button attach=\\"back\\">Back</button>
+    "
+`;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShoppingList should initialize correctly 1`] = `
+"
+      <button attach=\\"add\\" style=\\"color:#00c700\\">Add</button>
+      <button attach=\\"clear\\" style=\\"color:#ff6e6e\\">Clear</button>
+      <div attach=\\"list\\" style=\\"margin-top:20px; width:630px; padding:5px; background-color: #eeeeee\\"><shopping-list-element>
+      <div style=\\"width: 100%; margin-top: 5px; margin-bottom: 5px;\\">
+        <input attach=\\"enabled\\" type=\\"checkbox\\">
+        <span style=\\"width: 30px; display: inline-block\\">1</span>
+        <span style=\\"width: 100px; display: inline-block\\">Dog Food</span>
+        <span style=\\"width: 300px; display: inline-block\\">30 lb bag</span>
+        <button attach=\\"delete\\" style=\\"padding: 1px;\\">Delete</button>
+        <button attach=\\"edit\\" style=\\"padding: 1px;\\">Edit</button>
+      </div>
+    </shopping-list-element><shopping-list-element>
+      <div style=\\"width: 100%; margin-top: 5px; margin-bottom: 5px;\\">
+        <input attach=\\"enabled\\" type=\\"checkbox\\">
+        <span style=\\"width: 30px; display: inline-block\\">12</span>
+        <span style=\\"width: 100px; display: inline-block\\">Foo Bars</span>
+        <span style=\\"width: 300px; display: inline-block\\">1 Box</span>
+        <button attach=\\"delete\\" style=\\"padding: 1px;\\">Delete</button>
+        <button attach=\\"edit\\" style=\\"padding: 1px;\\">Edit</button>
+      </div>
+    </shopping-list-element></div>
+    "
+`;

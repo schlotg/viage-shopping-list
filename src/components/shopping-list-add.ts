@@ -40,8 +40,9 @@ export class ShoppingListAdd extends Component {
     }
 
     attachments.save.addEventListener('click', () => {
-      const item: any = {enabled: false};
+      const item: any = { purchased: false };
       this.fields.forEach(k => item[k] = attachments[k].value);
+      item.quantity = parseInt(item.quantity); // ensure this is a number
       if (!this.params.id) {
         ShoppingListService.addItem(item);
       } else {

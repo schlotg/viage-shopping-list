@@ -1,5 +1,14 @@
 # Viage Shopping List Tutorial
 
+## Testing
+Although not covered in the tutorial, Viage works very well with [Jest](https://jestjs.io/en/) test framework. Specifically Viage uses the [ts-jest](https://github.com/kulshekhar/ts-jest#supports-synthetic-modules) project so that all the tests can be written in Typescript and work seamlessly with Viage. The Viage CLI creates all the necessary hooks so that all you have to do is add tests to the test directory. You can use this project as an example for how to write functional and unit tests for a Viage project. To execute the tests type:
+
+```Javascript
+    npm run test
+```
+
+The Jest page has excellant documentation and is a great resource for Viage Testing
+
 ## Conclusion
 
 ### Size

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Shopping List Element should initialize correctly with test data 1`] = `
+"
+      <div style=\\"width: 100%; margin-top: 5px; margin-bottom: 5px;\\">
+        <input attach=\\"enabled\\" type=\\"checkbox\\">
+        <span style=\\"width: 30px; display: inline-block\\">1</span>
+        <span style=\\"width: 100px; display: inline-block\\">Dog Food</span>
+        <span style=\\"width: 300px; display: inline-block\\">30 lb bag</span>
+        <button attach=\\"delete\\" style=\\"padding: 1px;\\">Delete</button>
+        <button attach=\\"edit\\" style=\\"padding: 1px;\\">Edit</button>
+      </div>
+    "
+`;
