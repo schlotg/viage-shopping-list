@@ -14,6 +14,8 @@ export class App extends Component {
 
   constructor() {
     super('app');
+  }
+  init() {
     document.querySelector('title').textContent = this.title;
 
     this.attach('page', true);
@@ -28,7 +30,7 @@ export class App extends Component {
       { name: States.ADD, component: ShoppingListAdd,  type: 'NORMAL' },
       { name: States.EDIT, component: ShoppingListAdd,  type: 'NORMAL' },
     ]);
-    // start of by going to the state the page was loaded on
+    // start off by going to the state the page was loaded on
     router.start();
   }
 }
