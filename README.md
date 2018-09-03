@@ -64,12 +64,15 @@ export enum States {
 export class App extends Component {
   constructor() {
     super('app');
+  }
+  init() {
     document.querySelector('title').textContent = this.title;
 
     this.attach('page', true);
     this.setHTML(`
       <h1 style="text-align: center">${this.title}</h1>
     `);
+    return this;
   }
 }
 ```
@@ -77,7 +80,7 @@ export class App extends Component {
 ### Components
 All components must derive off of the Component base class which is located in Viage/core. TypeScript classes must call the constructor of their base class first thing in the constructor. This is done with the super() call and a component HTML tag name must be passed down to the base class. In this case the component is app and if you inspect the DOM using the browser debug tools, you will see a DOM element named \<app\>. This DOM element represents an instance of the component and will contain any HTML specified in the *setHTML()* function.
 
-On the next line you can see that we use the standard DOM API *querySelector()* to find the title element of the DOM and set its text content to the variable *title*. Again, these are just standard modern DOM APIs.
+Next, in the **init()** function, you can see that we use the standard DOM API *querySelector()* to find the title element of the DOM and set its text content to the variable *title*. Again, these are just standard modern DOM APIs.
 
 A component must have some place to render its HTML to. This is what the *attach()* function is for. **attach()** is defined in the Component base class. It attaches this component to a DOM element that matches the CSS selector passed in. In this case that it is **page**.
 

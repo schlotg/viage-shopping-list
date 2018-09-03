@@ -32,5 +32,6 @@ export class App extends Component {
     ]);
     // start off by going to the state the page was loaded on
     router.start();
+    return this;
   }
 }

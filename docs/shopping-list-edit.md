@@ -71,6 +71,7 @@ export class ShoppingListAdd extends Component {
       }
       const homeUrl = this.router.createUrl<void>(States.HOME);
       this.router.go(homeUrl);
+      return this;
     });
 
     // handle back

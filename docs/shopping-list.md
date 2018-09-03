@@ -35,6 +35,7 @@ export class ShoppingList extends Component {
       const addUrl = this.router.createUrl<void>(States.ADD);
       this.router.go(addUrl);
     });
+    return this;
   }
 
   updateList(){

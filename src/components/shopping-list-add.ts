@@ -56,6 +56,7 @@ export class ShoppingListAdd extends Component {
 
     // handle back
     attachments.back.addEventListener('click', () => this.router.back());
+    return this;
   }
 
   updateItem() {

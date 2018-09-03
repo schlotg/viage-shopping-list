@@ -9,7 +9,7 @@ test('App should initialize in the home state and match the snapshot', () => {
   ShoppingListService.addItem(item1);
   ShoppingListService.addItem(item2);
   // create a new App
-  const app = new App();
+  const app = new App().init();
   expect(app.e.innerHTML).toMatchSnapshot();
   destroyRouter('main');
   location.href = '';
@@ -21,7 +21,7 @@ test('App should go to add state and match the snapshot', () => {
   ShoppingListService.addItem(item1);
   ShoppingListService.addItem(item2);
   // create a new App
-  const app = new App();
+  const app = new App().init();
   // trigger add
   triggerClickEvent(app.e.querySelector('[attach=add]'));
   expect(app.e.innerHTML).toMatchSnapshot();
@@ -35,7 +35,7 @@ test('App should go to edit state and match the snapshot', () => {
   ShoppingListService.addItem(item1);
   ShoppingListService.addItem(item2);
   // create a new App
-  const app = new App();
+  const app = new App().init();
   // trigger edit
   triggerClickEvent(app.e.querySelector('[attach=edit]'));
   expect(app.e.innerHTML).toMatchSnapshot();

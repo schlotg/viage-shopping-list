@@ -55,8 +55,9 @@ export class ShoppingListAdd extends Component {
       this.router.go(homeUrl);
     });
 
-        // handle back
+    // handle back
     attachments.back.addEventListener('click', () => this.router.back());
+    return this;
   }
 }
 ```
