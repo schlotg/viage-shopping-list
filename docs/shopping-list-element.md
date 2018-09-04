@@ -34,13 +34,13 @@ export class ShoppingListElement extends Component {
   init(item: Item) {
     this.item = item;
     this.setHTML(`
-      <div style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
+      <div style="width: 100%; height: 30px; margin-top: 5px; margin-bottom: 5px;">
         <input attach="enabled" type="checkbox" ${item.purchased ? "checked": ""} />
         <span style="width: 30px; display: inline-block">${item.quantity}</span>
         <span style="width: 100px; display: inline-block">${item.name}</span>
         <span style="width: 300px; display: inline-block">${item.description}</span>
-        <button attach="delete" style="padding: 1px;">Delete</button>
-        <button attach="edit" style="padding: 1px;">Edit</button>
+        <button attach="delete" style="padding: 1px; float: right">Delete</button>
+        <button attach="edit" style="padding: 1px; float: right; margin-right: 10px;">Edit</button>
       </div>
     `);
     const attachments = this.attachments;

@@ -11,9 +11,10 @@ export class ShoppingList extends Component {
 
   init() {
     this.setHTML(`
+      <div class="logo-img"></div>
       <button attach="add" style="color:#00c700">Add</button>
       <button attach="clear" style="color:#ff6e6e">Clear</button>
-      <div attach="list" style="margin-top:20px; width:630px; padding:5px; background-color: #eeeeee"></div>
+      <div attach="list" style="margin-top:20px; padding:5px; background-color: #eeeeee"></div>
     `);
     this.updateList();
     this.addServiceListener(ShoppingListService, 'update', () => this.updateList());

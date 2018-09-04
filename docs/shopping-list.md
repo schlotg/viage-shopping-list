@@ -24,9 +24,10 @@ export class ShoppingList extends Component {
 
   init() {
     this.setHTML(`
+      <div class="logo-img"></div>
       <button attach="add" style="color:#00c700">Add</button>
       <button attach="clear" style="color:#ff6e6e">Clear</button>
-      <div attach="list" style="margin-top:20px; width:630px; padding:5px; background-color: #eeeeee"></div>
+      <div attach="list" style="margin-top:20px; padding:5px; background-color: #eeeeee"></div>
     `);
     this.updateList();
     this.addServiceListener(ShoppingListService, 'update', () => this.updateList());
@@ -51,6 +52,24 @@ export class ShoppingList extends Component {
 
 ### List HTML
 There are several things worth noting here. This component creates a **Add** button, **Clear** button, and a div that acts as a container to render the *ShoppingListElements* into. Just like the previous step we add click handlers to our buttons which will clear the list and tell the router to go to the Add state.
+
+### Images
+In this demo two different ways of adding images are used. The first way is to create an entry into the index.css file and then apply that style to an element. The first entry in the components HTML has the class logo-img applied to it. In later steps some styling will be added to the index.css file. The style for .logo-img is as follows:
+
+```css
+.logo-img {
+  background-image: url("./assets/logo.png");
+  width: 129px;
+  height: 128px;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+As webpack is processing the index.css file, it will see an image reference and then decide to inline it using base64 encoding, or copy it over to the build directory. The limit is set to 8k in webpack.common.js but can be adjusted.
+
+The second way to load images will be covered in the [Shopping List Add section](shopping-list-add.md).
+
+Note that links to images served outside this project need no special consideration. You can also read about this more on the [Viage FAQ](https://github.com/schlotg/viage/blob/master/docs/faq.md)
 
 ### Interacting with the Service
 This component installs a update event listener on the *ShoppingListService*. If you recall, this gets fired everytime the data changes in the service. You'll note that we use the Viage Component API  *addServiceListener()* to add the event listener. This is because this function has a nice cleanup mechanism that automatically removes the listener when this component gets destroyed. It is not neccesary to do this with event listeners in the owning component's HTML. This due to the fact that the Component will destroy its HTML elements when it goes away, which in turn destroys the event listeners.

@@ -21,7 +21,7 @@ export class App extends Component {
     this.attach('page', true);
     this.setHTML(`
       <h1 style="text-align: center">${this.title}</h1>
-      <div attach="portal"></div>
+      <div style="width: 100%; min-width: 654px" attach="portal"></div>
     `);
 
     const router = createRouter('main', this.attachments.portal, 'HASH');

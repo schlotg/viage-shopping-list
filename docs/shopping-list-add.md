@@ -12,6 +12,7 @@ Now modify the code so that it looks lke this:
 import { Component } from 'viage';
 import { ShoppingListService } from '../services/shopping-list-service';
 import { States } from './app';
+import * as logo from '../assets/logo.png';
 
 interface ComponentParams {
   id?: string;
@@ -28,7 +29,8 @@ export class ShoppingListAdd extends Component {
 
   init(params: ComponentParams) {
     this.setHTML(`
-      <h3>Add Item</h3>
+      <div style="background-image: url(${logo}); width: 129px; height: 128px; margin-left: auto; margin-right: auto"></div>
+      <h3 style="margin-left: 6px; color: green">Add Item</h3>
       <table>
         <tr>
           <th>Quantity</th>
@@ -88,6 +90,24 @@ Don't forget to import the ShoppingListAdd component by adding the following to 
 ```Javascript
 import { ShoppingListAdd } from './shopping-list-add';
 ```
+
+### Images
+This component illustrates the second way to use images in a Viage App. In this case the component gets a reference to the image using import. The code looks like this:
+```Javascript
+  import * as logo from '../assets/logo.png';
+```
+You can then see that the image reference is used as a template parameter in the code:
+```Javascript
+    this.setHTML(`
+      <div style="background-image: url(${logo}); width: 129px; height: 128px; margin-left: auto; margin-right:
+      ...
+```
+The first way to use images is covered in the [Shopping List section](shopping-list.md)
+
+As Webpack is processing this file, it will decide if it should be inlined or copied into the build directory and referenced. It does this based on file size. The default limit is 8K.
+
+For more information see the [Viage FAQ](https://github.com/schlotg/viage/blob/master/docs/faq.md);
+
 
 ### Test it out
 Finally we can add items to our shopping list and then display them. Press the add button on the app running in the browser and add some items. Your shopping-list-add screen should look like this:

@@ -1,6 +1,7 @@
 import { Component } from 'viage';
 import { ShoppingListService } from '../services/shopping-list-service';
 import { States } from './app';
+import * as logo from '../assets/logo.png';
 
 interface ComponentParams {
   id?: string;
@@ -17,8 +18,9 @@ export class ShoppingListAdd extends Component {
 
   init(params: ComponentParams) {
     this.setHTML(`
-      <h3>${params && params.id ? 'Edit' : 'Add Item'}</h3>
-      <table>
+    <div style="background-image: url(${logo}); width: 129px; height: 128px; margin-left: auto; margin-right: auto"></div>
+    <h3 style="margin-left: 6px; color: green">${params && params.id ? 'Edit' : 'Add Item'}</h3>
+      <table style="margin-bottom: 30px;">
         <tr>
           <th>Quantity</th>
           <th>Name</th>
@@ -30,7 +32,7 @@ export class ShoppingListAdd extends Component {
           <td><input type="text" attach="description" style="width: 300px" /></td>
         </tr>
       </table>
-      <button attach="save">Save</button>
+      <button style="margin-left:4px" attach="save">Save</button>
       <button attach="back">Back</button>
     `);
     const attachments = this.attachments;
