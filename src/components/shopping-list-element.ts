@@ -39,8 +39,12 @@ export class ShoppingListElement extends Component {
     `);
     const attachments = this.attachments;
     const remove = () => ShoppingListService.removeItem(this.item._id);
-    const enable = () => {
+    const enable1 = () => {
       this.item.purchased = attachments.enabled.checked;
+      ShoppingListService.save();
+    };
+    const enable2 = () => {
+      this.item.purchased = attachments.m_enabled.checked;
       ShoppingListService.save();
     };
     const edit = () => {
@@ -49,8 +53,8 @@ export class ShoppingListElement extends Component {
     };
     attachments.delete.addEventListener('click', remove);
     attachments.m_delete.addEventListener('click', remove);
-    attachments.enabled.addEventListener('click', enable);
-    attachments.m_enabled.addEventListener('click', enable);
+    attachments.enabled.addEventListener('click', enable1);
+    attachments.m_enabled.addEventListener('click', enable2);
     this.attachments.edit.addEventListener('click', edit);
     this.attachments.m_edit.addEventListener('click', edit);
     return this;
