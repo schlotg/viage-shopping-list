@@ -18,22 +18,24 @@ export class ShoppingListAdd extends Component {
 
   init(params: ComponentParams) {
     this.setHTML(`
-    <div style="background-image: url(${logo}); width: 129px; height: 128px; margin-left: auto; margin-right: auto"></div>
-    <h3 style="margin-left: 6px; color: green">${params && params.id ? 'Edit' : 'Add Item'}</h3>
-      <table style="margin-bottom: 30px;">
-        <tr>
-          <th>Quantity</th>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td><input type="number" attach="quantity" style="width: 60px" /></td>
-          <td><input type="text" attach="name" style="width: 100px" /></td>
-          <td><input type="text" attach="description" style="width: 300px" /></td>
-        </tr>
-      </table>
-      <button style="margin-left:4px" attach="save">Save</button>
-      <button attach="back">Back</button>
+    <div style="background-image: url(${logo}); width: 129px; height: 128px; margin-left: auto; margin-right: auto; margin-bottom: 20px;"></div>
+    <h3 class="not-mobile" style="margin-left: 6px; color: green">${params && params.id ? 'Edit' : 'Add Item'}</h3>
+    <div class="quantity-container">
+      <label class="label">Quantity</label>
+      <input class="input" type="number" attach="quantity"/>
+    </div>
+    <div class="name-container">
+      <label class="label">Name</label>
+      <input class="input" type="text" attach="name"/>
+    </div>
+    <div class="description-container">
+      <label class="label">Description</label>
+      <input class="input" type="text" attach="description"/>
+    </div>
+    <div>
+      <button class="save-button button green" attach="save">Save</button>
+      <button class="button blue" attach="back">Back</button>
+    <div>
     `);
     const attachments = this.attachments;
     this.params = params;

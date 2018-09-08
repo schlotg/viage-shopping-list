@@ -32,6 +32,14 @@ font-family: "Segoe UI",Arial,sans-serif;
 font-weight: 400;
 }
 
+.logo-img {
+  background-image: url("./assets/logo.png");
+  width: 129px;
+  height: 128px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 input[type=checkbox], input[type=radio] {
   box-sizing: border-box;
   padding: 0;
@@ -80,7 +88,7 @@ input {
 
 This is just standard CSS nothing special. After applying these changes your app should now look like this:
 
-![img4](img5.png)
+![img5](img5.png)
 
-### [Next (Conclusion)](conclusion.md)
+### [Next (Animations)](animations.md)
 
