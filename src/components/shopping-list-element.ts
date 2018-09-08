@@ -28,7 +28,7 @@ export class ShoppingListElement extends Component {
       <div attach="m_edit" class="mobile list-item">
         <input attach="m_enabled" type="checkbox" ${item.purchased ? "checked": ""} />
         <span style="width: 30px; display: inline-block">${item.quantity}</span>
-        <span style="width: 20%; display: inline-block">${item.name}</span>
+        <span style="width: 50%; display: inline-block">${item.name}</span>
         <button attach="m_delete" style="padding: 1px; float: right">X</button>
         <div style="display: block; margin-top:20px;">
           <label style="font-weight:800">Description: </label>
