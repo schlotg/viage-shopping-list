@@ -1,8 +1,8 @@
 # Viage Shopping List Tutorial
-This is a Viage tutorial that demonstrates how to build a simple shopping list app from the ground up using the [Viage framework and CLI. It assumes you are familiar with TypeScript and modern DOM APIs.
+This is a Viage tutorial that demonstrates how to build a simple shopping list app from the ground up using the Viage framework and CLI. It assumes you are familiar with TypeScript and modern DOM APIs. THe web version of this tutorial can be found at the [Viage Website](https://schlotg.github.io)
 
 ## What is Viage?
-Viage is a minimal web framework that is also fast and easy to use. You can find out more about it [here](https://github.com/schlotg/viage)
+Viage is a minimal web framework that is also fast and easy to use. You can find out more about it [here](https://schlotg.github.io/)
 
 ## Tutorial
 You can view what we are about to build in its final form [here](https://schlotg.github.io/shopping-list.html#home)
