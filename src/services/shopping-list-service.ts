@@ -36,7 +36,7 @@ class ShoppingListServiceSingleton extends Service {
       window.localStorage.setItem('ShoppingList',
         JSON.stringify({ list: this.list, count: this.count }));
     }
-    this.dispatchEvent('update', this.list);
+    this.dispatchEvent<Item[]>('update', this.list);
   }
 
   private findIndex(id: string): number {

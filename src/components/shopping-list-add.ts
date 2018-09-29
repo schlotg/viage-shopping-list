@@ -45,7 +45,7 @@ export class ShoppingListAdd extends Component {
 
     attachments.save.addEventListener('click', () => {
       const item: any = { purchased: false };
-      this.fields.forEach(k => item[k] = attachments[k].value);
+      this.fields.forEach(k => item[k] = (<HTMLInputElement>attachments[k]).value);
       item.quantity = parseInt(item.quantity); // ensure this is a number
       if (!this.params.id) {
         ShoppingListService.addItem(item);
@@ -65,6 +65,6 @@ export class ShoppingListAdd extends Component {
 
   updateItem() {
     const data: any = ShoppingListService.getItem(this.params.id);
-    this.fields.forEach((k: string) => this.attachments[k].value = data && data[k]);
+    this.fields.forEach((k: string) => (<HTMLInputElement>this.attachments[k]).value = data && data[k]);
   }
 }

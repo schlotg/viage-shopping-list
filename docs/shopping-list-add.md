@@ -50,7 +50,7 @@ export class ShoppingListAdd extends Component {
 
     attachments.save.addEventListener('click', () => {
       const item: any = {purchased: false};
-      this.fields.forEach(k => item[k] = attachments[k].value);
+      this.fields.forEach(k => item[k] = (<HTMLInputElement>attachments[k]).value);
       item.quantity = parseInt(item.quantity); // ensure this is a number
       ShoppingListService.addItem(item);
       const homeUrl = this.router.createUrl<void>(States.HOME);

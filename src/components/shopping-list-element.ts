@@ -40,11 +40,11 @@ export class ShoppingListElement extends Component {
     const attachments = this.attachments;
     const remove = () => ShoppingListService.removeItem(this.item._id);
     const enable1 = () => {
-      this.item.purchased = attachments.enabled.checked;
+      this.item.purchased = this.getAttachment<HTMLInputElement>('enabled').checked;
       ShoppingListService.save();
     };
     const enable2 = () => {
-      this.item.purchased = attachments.m_enabled.checked;
+      this.item.purchased = this.getAttachment<HTMLInputElement>('m_enabled').checked;
       ShoppingListService.save();
     };
     const edit = () => {

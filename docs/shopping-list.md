@@ -12,7 +12,7 @@ Now modify the code in the new component so lit looks like the following:
 
 ```Javascript
 import { Component } from 'viage';
-import { ShoppingListService } from '../services/shopping-list-service';
+import { ShoppingListService, Item } from '../services/shopping-list-service';
 import { ShoppingListElement } from './shopping-list-element';
 import { States } from './app';
 
@@ -30,7 +30,7 @@ export class ShoppingList extends Component {
       <div attach="list" class="shopping-list"></div>
     `);
     this.updateList();
-    this.addServiceListener(ShoppingListService, 'update', () => this.updateList());
+    this.addServiceListener<Item[]>(ShoppingListService, 'update', (list: Item[]) => this.updateList());
     this.attachments.clear.addEventListener('click', () => ShoppingListService.clear());
     this.attachments.add.addEventListener('click', () => {
       const addUrl = this.router.createUrl<void>(States.ADD);
