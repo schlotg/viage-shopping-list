@@ -13,13 +13,13 @@ This will create a new file at src/services/shopping-list-service.ts. Open this 
 ```Javascript
 import { Service } from 'viage';
 
-class ShoppingListServiceSingleton extends Service {
+export class ShoppingListService extends Service {
   constructor() {
     super();
   }
 }
-const service = new ShoppingListServiceSingleton ();
-export const ShoppingListService = service;
+
+export const shoppingListService = new ShoppingListService ();
 ```
 
 Services extend the base class Service, and then export a single instance of the service. To use it in a component you just need to import it:
@@ -39,7 +39,7 @@ export interface Item {
   description: string;
   quantity: number;
   purchased: boolean;
-  _id?: string; // added by the service
+  id?: string; // added by the service
 }
 
 class ShoppingListServiceSingleton extends Service {
@@ -56,11 +56,16 @@ Since writing server code is beyond the scope of this tutorial, we will write to
 class ShoppingListServiceSingleton extends Service {
 
   private list: Item[] = [];
-  private count = 1;
+  private lastId = 0;
 
+  // generate a unique id
   private generateId() {
-    this.count += 1;
-    return this.count.toString(16);
+    let id = lastId
+    while (id == lastId) {
+      id = Date.now();
+    }
+    this.lastId = id;
+    return id.toString(16);
   }
 
   constructor() {
@@ -93,30 +98,22 @@ Notice that everytime the *save()* function is called, we dispatch an event call
 Next, we will add some getters and setters to make it easy to add, get, and remove data for the components. This is just standard Typescript. Add the following lines to our service:
 
 ```Javascript
-  private findIndex(id: string): number {
-    let i = 0;
-    const list = this.list;
-    for (; i < list.length; ++i) {
-      if (list[i]._id === id) { break; }
-    }
-    return i;
-  }
-
   addItem(item: Item) {
-    item._id = item._id || this.generateId();
+    item.id = this.generateId();
     this.list.push(item);
     this.save();
   }
 
   removeItem(id: string) {
-    const i = this.findIndex(id);
-    this.list.splice(i, 1);
-    this.save();
+    const i = this.list.findIndex(e => e.id === id));
+    if (i !== -1) {
+      this.list.splice(i, 1);
+      this.save();
+    }
   }
 
   getItem(id: string): Item {
-    const i = this.findIndex(id);
-    return this.list[i];
+    return this.list.find(e => e.id === id));
   }
 
   forEach(cb: (item: Item, i?: number) => void) {
@@ -143,17 +140,21 @@ export interface Item {
   description: string;
   quantity: number;
   purchased: boolean;
-  _id?: string; // added by the service
+  id?: string; // added by the service
 }
 
 class ShoppingListServiceSingleton extends Service {
 
-  private list: Item[] = [];
-  private count = 1;
+  private lastId = 0;
 
+  // generate a unique id
   private generateId() {
-    this.count += 1;
-    return this.count.toString(16);
+    let id = lastId;
+    while (id == lastId) {
+      id = Date.now();
+    }
+    this.lastId = id;
+    return id.toString(16);
   }
 
   constructor() {
@@ -177,39 +178,26 @@ class ShoppingListServiceSingleton extends Service {
     this.dispatchEvent<Item[]>('update', this.list);
   }
 
-  private findIndex(id: string): number {
-    let i = 0;
-    const list = this.list;
-    for (; i < list.length; ++i) {
-      if (list[i]._id === id) { break; }
-    }
-    return i;
-  }
-
   addItem(item: Item) {
-    item._id = item._id || this.generateId();
+    item.id = this.generateId();
     this.list.push(item);
     this.save();
   }
 
   removeItem(id: string) {
-    const i = this.findIndex(id);
-    this.list.splice(i, 1);
-    this.save();
+    const i = this.list.findIndex(e => e.id === id));
+    if (i !== -1) {
+      this.list.splice(i, 1);
+      this.save();
+    }
   }
 
   getItem(id: string): Item {
-    const i = this.findIndex(id);
-    return this.list[i];
+    return this.list.find(e => e.id === id));
   }
 
   forEach(cb: (item: Item, i?: number) => void) {
     this.list.forEach(cb);
-  }
-
-  clear() {
-    this.list = [];
-    this.save();
   }
 }
 

@@ -8,7 +8,7 @@ export interface Item {
   _id?: string; // added by the service
 }
 
-class ShoppingListServiceSingleton extends Service {
+class ShoppingListService extends Service {
 
   private list: Item[] = [];
   private count = 1;
@@ -20,6 +20,7 @@ class ShoppingListServiceSingleton extends Service {
 
   constructor() {
     super();
+    debugger;
     if (window.localStorage) {
       const json = window.localStorage.getItem('ShoppingList');
       if (json) {
@@ -74,6 +75,4 @@ class ShoppingListServiceSingleton extends Service {
     this.save();
   }
 }
-
-const service = new ShoppingListServiceSingleton();
-export const ShoppingListService = service;
+export const shoppingListService = new ShoppingListService();

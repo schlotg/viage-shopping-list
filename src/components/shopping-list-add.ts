@@ -1,70 +1,48 @@
 import { Component } from 'viage';
-import { ShoppingListService } from '../services/shopping-list-service';
+import { shoppingListService, Item } from '../services/shopping-list-service';
 import { States } from './app';
+import * as html from './shopping-list-add.html';
 import * as logo from '../assets/logo.png';
 
-interface ComponentParams {
-  id?: string;
-}
-
 export class ShoppingListAdd extends Component {
-
-  params: ComponentParams = {id: ''};
-  fields = ['quantity', 'name', 'description'];
+  private item: Item = {
+    purchased: false,
+    quantity: 0,
+    name: '',
+    description: ''
+  };
 
   constructor() {
     super('shopping-list-add');
   }
 
-  init(params: ComponentParams) {
-    this.setHTML(`
-    <div style="background-image: url(${logo}); width: 129px; height: 128px; margin-left: auto; margin-right: auto; margin-bottom: 20px;"></div>
-    <h3 class="not-mobile" style="margin-left: 6px; color: green">${params && params.id ? 'Edit' : 'Add Item'}</h3>
-    <div class="quantity-container">
-      <label class="label">Quantity</label>
-      <input class="input" type="number" attach="quantity"/>
-    </div>
-    <div class="name-container">
-      <label class="label">Name</label>
-      <input class="input" type="text" attach="name"/>
-    </div>
-    <div class="description-container">
-      <label class="label">Description</label>
-      <input class="input" type="text" attach="description"/>
-    </div>
-    <div>
-      <button class="save-button button green" attach="save">Save</button>
-      <button class="button blue" attach="back">Back</button>
-    <div>
-    `);
-    const attachments = this.attachments;
-    this.params = params;
+  init(params: { id: string }) {
+    this.setHTML(html, { id: params && params.id, logo });
+
+    // if in edit mode than update the item with the latest data from the service
     if (params && params.id) {
-      this.updateItem();
+      const data = shoppingListService.getItem(params.id);
+      if (data) {
+        (<HTMLInputElement>this.attachments.quantity).value = data.quantity.toString();
+        (<HTMLInputElement>this.attachments.name).value = data.name;
+        (<HTMLInputElement>this.attachments.description).value = data.description;
+        this.item = data;
+      }
     }
 
-    attachments.save.addEventListener('click', () => {
-      const item: any = { purchased: false };
-      this.fields.forEach(k => item[k] = (<HTMLInputElement>attachments[k]).value);
-      item.quantity = parseInt(item.quantity); // ensure this is a number
-      if (!this.params.id) {
-        ShoppingListService.addItem(item);
-      } else {
-        const data: any = ShoppingListService.getItem(this.params.id);
-        this.fields.forEach(k => data[k] = item[k]);
-        ShoppingListService.save();
-      }
-      const homeUrl = this.router.createUrl<void>(States.HOME);
+    // add save handlers
+    this.attachments.save.addEventListener('click', () => {
+      this.item.quantity = parseInt((<HTMLInputElement>this.attachments.quantity).value);
+      this.item.name = (<HTMLInputElement>this.attachments.name).value;
+      this.item.description = (<HTMLInputElement>this.attachments.description).value;
+      (params && params.id) ? shoppingListService.addItem(this.item) :
+        shoppingListService.save();
+      const homeUrl = this.router.createUrl(States.HOME);
       this.router.go(homeUrl);
     });
 
     // handle back
-    attachments.back.addEventListener('click', () => this.router.back());
+    this.attachments.back.addEventListener('click', () => this.router.back());
     return this;
-  }
-
-  updateItem() {
-    const data: any = ShoppingListService.getItem(this.params.id);
-    this.fields.forEach((k: string) => (<HTMLInputElement>this.attachments[k]).value = data && data[k]);
   }
 }

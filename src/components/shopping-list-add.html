@@ -1,0 +1,19 @@
+<div style="background-image: url(${this.logo}); width: 129px; height: 128px; margin-left: auto; margin-right: auto; margin-bottom: 20px;"></div>
+<h3 class="not-mobile" style="margin-left: 6px; color: green">${this.id ? 'Edit' : 'Add Item'}
+</h3>
+<div class="quantity-container">
+  <label class="label">Quantity</label>
+  <input class="input" type="number" attach="quantity"/>
+</div>
+<div class="name-container">
+  <label class="label">Name</label>
+  <input class="input" type="text" attach="name"/>
+</div>
+<div class="description-container">
+  <label class="label">Description</label>
+  <input class="input" type="text" attach="description"/>
+</div>
+<div>
+  <button class="save-button button green" attach="save">Save</button>
+  <button class="button blue" attach="back">Back</button>
+<div>
