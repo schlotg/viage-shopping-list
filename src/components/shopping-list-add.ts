@@ -23,18 +23,18 @@ export class ShoppingListAdd extends Component {
     if (params && params.id) {
       const data = shoppingListService.getItem(params.id);
       if (data) {
-        (<HTMLInputElement>this.attachments.quantity).value = data.quantity.toString();
-        (<HTMLInputElement>this.attachments.name).value = data.name;
-        (<HTMLInputElement>this.attachments.description).value = data.description;
+        (<HTMLInputElement>this.a.quantity).value = data.quantity.toString();
+        (<HTMLInputElement>this.a.name).value = data.name;
+        (<HTMLInputElement>this.a.description).value = data.description;
         this.item = data;
       }
     }
 
     // add save handlers
     this.attachments.save.addEventListener('click', () => {
-      this.item.quantity = parseInt((<HTMLInputElement>this.attachments.quantity).value);
-      this.item.name = (<HTMLInputElement>this.attachments.name).value;
-      this.item.description = (<HTMLInputElement>this.attachments.description).value;
+      this.item.quantity = parseInt((<HTMLInputElement>this.a.quantity).value);
+      this.item.name = (<HTMLInputElement>this.a.name).value;
+      this.item.description = (<HTMLInputElement>this.a.description).value;
       (params && params.id) ? shoppingListService.addItem(this.item) :
         shoppingListService.save();
       const homeUrl = this.router.createUrl(States.HOME);

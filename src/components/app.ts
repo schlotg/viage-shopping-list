@@ -1,5 +1,5 @@
 import { ShoppingList } from './shopping-list';
-import { ShoppingListAdd } from './shopping-list-add';
+//import { ShoppingListAdd } from './shopping-list-add';
 import { createRouter, Component, StateInfo } from 'viage';
 
 export enum States {
@@ -28,8 +28,10 @@ export class App extends Component {
     const router = createRouter('main', this.attachments.portal, 'HASH');
     router.addStates([
       { name: States.HOME, component: ShoppingList,  type: 'DEFAULT' },
-      { name: States.ADD, component: ShoppingListAdd,  type: 'NORMAL' },
-      { name: States.EDIT, component: ShoppingListAdd,  type: 'NORMAL' },
+      { name: States.ADD, promise: () => import(/* webpackChunkName: "add" */ './shopping-list-add')
+        .then((module) => new module.ShoppingListAdd()),  type: 'NORMAL' },
+      { name: States.EDIT, promise: () => import(/* webpackChunkName: "add" */ './shopping-list-add')
+        .then((module) => new module.ShoppingListAdd()),  type: 'NORMAL' },
     ]);
 
     // add a animation handler for router state changes

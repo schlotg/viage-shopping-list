@@ -18,8 +18,8 @@ export class ShoppingList extends Component {
     `);
     this.updateList();
     this.addServiceListener<Item[]>(shoppingListService, 'update', (list: Item[]) => this.updateList());
-    this.attachments.clear.addEventListener('click', () => shoppingListService.clear());
-    this.attachments.add.addEventListener('click', () => {
+    this.a.clear.addEventListener('click', () => shoppingListService.clear());
+    this.a.add.addEventListener('click', () => {
       const addUrl = this.router.createUrl<void>(States.ADD);
       this.router.go(addUrl);
     });
@@ -28,10 +28,10 @@ export class ShoppingList extends Component {
 
   updateList(){
     this.clearComponents();
-    this.attachments.list.innerHTML = '';
+    this.a.list.innerHTML = '';
     shoppingListService.forEach(e => {
       this.createComponent(ShoppingListElement).init(e)
-        .attach(this.attachments.list);
+        .attach(this.a.list);
     });
   }
 }

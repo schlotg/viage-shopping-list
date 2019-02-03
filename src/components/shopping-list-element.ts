@@ -22,7 +22,7 @@ export class ShoppingListElement extends Component {
       name: this.item.name,
       quantity: this.item.quantity.toString()
     });
-    const attachments = this.attachments;
+    const attachments = this.a;
     const remove = () => shoppingListService.removeItem(this.item._id);
     const enable1 = () => {
       this.item.purchased = this.getAttachment<HTMLInputElement>('enabled').checked;
