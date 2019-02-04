@@ -9,7 +9,10 @@
     "module": "esnext",
     "moduleResolution": "node"
   },
-  "include": [ "src/**/*" ],
+  "include": [
+    "src/**/*",
+    "node_modules/viage/src/**/*"
+  ],
   "typeRoots": [
     "node_modules/@types",
     "./src/types.d.ts"
