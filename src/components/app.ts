@@ -1,5 +1,4 @@
 import { ShoppingList } from './shopping-list';
-//import { ShoppingListAdd } from './shopping-list-add';
 import { createRouter, Component, StateInfo } from 'viage';
 
 export enum States {
