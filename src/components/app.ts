@@ -28,9 +28,10 @@ export class App extends Component {
     router.addStates([
       { name: States.HOME, component: ShoppingList,  type: 'DEFAULT' },
       { name: States.ADD, promise: () => import(/* webpackChunkName: "add" */ './shopping-list-add')
-        .then((module) => new module.ShoppingListAdd()),  type: 'NORMAL' },
+          .then((module) => new module.ShoppingListAdd()),  type: 'NORMAL' },
       { name: States.EDIT, promise: () => import(/* webpackChunkName: "add" */ './shopping-list-add')
-        .then((module) => new module.ShoppingListAdd()),  type: 'NORMAL' },
+          .then((module) => new module.ShoppingListAdd()),  type: 'NORMAL' },
+
     ]);
 
     // add a animation handler for router state changes
